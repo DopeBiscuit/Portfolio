@@ -116,14 +116,18 @@ const Hero = () => {
               and distributed systems.
             </motion.p>
 
-            {/* Quick Stats */}
+            {/* Quick Stats - Updated with 4+ years */}
             <motion.div
               variants={itemVariants}
-              className="grid grid-cols-3 gap-4 max-w-md"
+              className="grid grid-cols-4 gap-4 max-w-lg"
             >
               <div className="text-center">
                 <div className="text-xl md:text-2xl font-bold gradient-text">100+</div>
                 <div className="text-xs text-gray-500">Projects</div>
+              </div>
+              <div className="text-center">
+                <div className="text-xl md:text-2xl font-bold gradient-text">4+</div>
+                <div className="text-xs text-gray-500">Years</div>
               </div>
               <div className="text-center">
                 <div className="text-xl md:text-2xl font-bold gradient-text">3.5</div>
@@ -185,10 +189,10 @@ const Hero = () => {
                 className="absolute inset-0 bg-gradient-to-br from-accent-500/30 to-primary-500/30 rounded-2xl blur-xl"
               />
               
-              {/* Photo container */}
+              {/* Photo container - Fixed dimensions for 600x800 portrait */}
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="relative w-80 h-80 md:w-96 md:h-96 rounded-2xl overflow-hidden glass-effect border-2 border-accent-500/30"
+                className="relative w-72 h-96 md:w-80 md:h-[26rem] rounded-2xl overflow-hidden glass-effect border-2 border-accent-500/30"
               >
                 <img
                   src="/images/profile.png"
@@ -200,13 +204,13 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-950/20 via-transparent to-transparent" />
               </motion.div>
 
-              {/* Floating tech badges around photo */}
+              {/* Floating tech badges around photo - Updated terms */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
                 className="absolute -top-6 -left-6 px-3 py-1 bg-accent-600 text-white text-sm rounded-full font-medium"
               >
-                Python
+                Automation
               </motion.div>
               
               <motion.div
@@ -214,7 +218,7 @@ const Hero = () => {
                 transition={{ duration: 4, repeat: Infinity, delay: 1 }}
                 className="absolute top-20 -right-8 px-3 py-1 bg-primary-600 text-white text-sm rounded-full font-medium"
               >
-                React
+                Software
               </motion.div>
               
               <motion.div
