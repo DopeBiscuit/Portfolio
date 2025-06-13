@@ -6,7 +6,7 @@ import {
   SiDocker, SiAmazonaws, SiRedis, SiJava, SiMongodb,
   SiBootstrap, SiTailwindcss, SiGithubactions, SiFigma,
   SiCplusplus, SiHtml5, SiCss3, SiMysql, SiLinux,
-  SiArduino, SiFastapi, SiGoogleappscript, SiVisualstudio,
+  SiArduino, SiFastapi, SiGoogleappsscript, SiVisualstudio,
   SiGit
 } from 'react-icons/si';
 import { FaCode, FaTools, FaMicrochip, FaPalette, FaGrid3x3 } from 'react-icons/fa';
@@ -73,7 +73,7 @@ const Skills = () => {
             name: 'Google Apps Script',
             context: 'Automation & integration with Google Workspace',
             cluster: 'backend',
-            icon: SiGoogleappscript,
+            icon: SiGoogleappsscript,
             iconColor: '#4285F4',
             mastery: 'Advanced',
             sparkles: true
