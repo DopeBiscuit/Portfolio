@@ -9,12 +9,11 @@ import {
   SiArduino, SiFastapi, SiGoogleappsscript, SiVisualstudiocode,
   SiGit
 } from 'react-icons/si';
-import { FaCode, FaTools, FaMicrochip, FaPalette, FaEye, FaGrid3x3 } from 'react-icons/fa';
-
+import { FaCode, FaTools, FaMicrochip, FaPalette, FaGrid3x3 } from 'react-icons/fa';
 
 const Skills = () => {
   const [activeFilter, setActiveFilter] = useState('all');
-  const [viewMode, setViewMode] = useState('categories'); // 'categories', 'compact', 'detailed'
+  const [viewMode, setViewMode] = useState('categories');
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -497,58 +496,63 @@ const Skills = () => {
 
       {/* Compact Skills Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        {getAllSkills().map((skill, index) => (
-          <motion.div
-            key={skill.name}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.05 }}
-            className="group relative p-4 rounded-xl glass-effect border transition-all duration-300 hover:scale-105 hover:border-accent-500/50 cursor-pointer"
-            onClick={() => setActiveFilter(skill.categoryKey)}
-            onHoverStart={() => setHoveredSkill(skill.name)}
-            onHoverEnd={() => setHoveredSkill(null)}
-            variants={skill.pulse ? pulseVariants : {}}
-            animate={skill.pulse ? "animate" : ""}
-          >
-            {/* Sparkle Effect */}
-            {skill.sparkles && (
-              <motion.div
-                className="absolute top-1 right-1 text-yellow-400 text-xs"
-                variants={sparkleVariants}
-                animate="animate"
-              >
-                ✨
-              </motion.div>
-            )}
+        {getAllSkills().map((skill, index) => {
+          const SkillMotionDiv = skill.pulse ? motion.div : motion.div;
+          return (
+            <SkillMotionDiv
+              key={skill.name}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.05 }}
+              className="group relative p-4 rounded-xl glass-effect border transition-all duration-300 hover:scale-105 hover:border-accent-500/50 cursor-pointer"
+              onClick={() => setActiveFilter(skill.categoryKey)}
+              onHoverStart={() => setHoveredSkill(skill.name)}
+              onHoverEnd={() => setHoveredSkill(null)}
+              {...(skill.pulse ? { 
+                variants: pulseVariants,
+                animate: "animate"
+              } : {})}
+            >
+              {/* Sparkle Effect */}
+              {skill.sparkles && (
+                <motion.div
+                  className="absolute top-1 right-1 text-yellow-400 text-xs"
+                  variants={sparkleVariants}
+                  animate="animate"
+                >
+                  ✨
+                </motion.div>
+              )}
 
-            <div className="text-center">
-              <motion.div 
-                className="text-2xl mb-2 mx-auto w-fit" 
-                style={{ color: skill.iconColor }}
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <skill.icon />
-              </motion.div>
-              <h4 className="text-xs font-medium text-white mb-1 leading-tight">{skill.name}</h4>
-              <span className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${skill.category.color} text-white inline-block`}>
-                {skill.mastery}
-              </span>
-            </div>
+              <div className="text-center">
+                <motion.div 
+                  className="text-2xl mb-2 mx-auto w-fit" 
+                  style={{ color: skill.iconColor }}
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <skill.icon />
+                </motion.div>
+                <h4 className="text-xs font-medium text-white mb-1 leading-tight">{skill.name}</h4>
+                <span className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${skill.category.color} text-white inline-block`}>
+                  {skill.mastery}
+                </span>
+              </div>
 
-            {/* Tooltip */}
-            {hoveredSkill === skill.name && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg shadow-xl border border-gray-700 whitespace-nowrap z-50"
-              >
-                {skill.context}
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
-              </motion.div>
-            )}
-          </motion.div>
-        ))}
+              {/* Tooltip */}
+              {hoveredSkill === skill.name && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg shadow-xl border border-gray-700 whitespace-nowrap z-50"
+                >
+                  {skill.context}
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
+                </motion.div>
+              )}
+            </SkillMotionDiv>
+          );
+        })}
       </div>
 
       {/* Stats */}
@@ -568,23 +572,23 @@ const Skills = () => {
 
   const renderDetailedView = () => (
     <AnimatePresence mode="wait">
-     <motion.div
-      key={activeFilter}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.4 }}
-      className="space-y-20"
-    >
-      {getFilteredCategories().map(([categoryKey, category], categoryIndex) => (
-        <motion.div
-          key={categoryKey}
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: categoryIndex * 0.2 }}
-          className="relative"
-        >
+      <motion.div
+        key={activeFilter}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.4 }}
+        className="space-y-20"
+      >
+        {getFilteredCategories().map(([categoryKey, category], categoryIndex) => (
+          <motion.div
+            key={categoryKey}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: categoryIndex * 0.2 }}
+            className="relative"
+          >
             {/* Category Header */}
             <motion.div 
               className="text-center mb-12 relative"
@@ -618,58 +622,94 @@ const Skills = () => {
 
             {/* Skills Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {category.skills.map((skill, index) => (
-                <motion.div key={skill.name} /* ... motion props ... */>
-                  <div className={`relative p-8 rounded-3xl glass-effect border-2 transition-all duration-500 overflow-hidden ${clusters[skill.cluster].color}`}>
-                    {/* ... background and sparkle effects ... */}
-
-                    <div className="relative z-10">
-                      <div className="flex items-start gap-4 mb-6">
-                        <motion.div 
-                          className="text-4xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
-                          whileHover={{ rotate: [0, -10, 10, 0] }}
-                          transition={{ duration: 0.3 }}
-                          style={{ color: skill.iconColor }}
+              {category.skills.map((skill, index) => {
+                const SkillMotionDiv = skill.pulse ? motion.div : motion.div;
+                return (
+                  <SkillMotionDiv
+                    key={skill.name}
+                    initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
+                    whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      delay: index * 0.1, 
+                      type: "spring", 
+                      stiffness: 200,
+                      damping: 20
+                    }}
+                    whileHover={{ 
+                      scale: 1.05, 
+                      y: -10, 
+                      rotateX: 5,
+                      transition: { duration: 0.2 }
+                    }}
+                    onHoverStart={() => setHoveredSkill(skill.name)}
+                    onHoverEnd={() => setHoveredSkill(null)}
+                    className="group relative"
+                    {...(skill.pulse ? { 
+                      variants: pulseVariants,
+                      animate: "animate"
+                    } : {})}
+                  >
+                    <div className={`relative p-8 rounded-3xl glass-effect border-2 transition-all duration-500 overflow-hidden ${clusters[skill.cluster].color}`}>
+                      <div className={`absolute inset-0 bg-gradient-to-br ${category.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                      
+                      {skill.sparkles && (
+                        <motion.div
+                          className="absolute top-4 right-4 text-yellow-400"
+                          variants={sparkleVariants}
+                          animate="animate"
                         >
-                          <skill.icon />
+                          ✨
                         </motion.div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <h4 className="text-xl font-bold text-white group-hover:text-accent-100 transition-colors">
-                              {skill.name}
-                            </h4>
-                            <motion.span 
-                              className={`text-xs px-3 py-1 rounded-full font-medium ${clusters[skill.cluster].color} backdrop-blur-sm flex items-center gap-1`}
-                              whileHover={{ scale: 1.1 }}
-                            >
-                              {/* FIXED: Use helper function instead of direct component access */}
-                              {renderClusterIcon(skill.cluster)}
-                              {clusters[skill.cluster].name}
-                            </motion.span>
-                          </div>
-                          <motion.div
-                            className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${category.color} text-white font-bold inline-block`}
-                            whileHover={{ scale: 1.05 }}
+                      )}
+
+                      <div className="relative z-10">
+                        <div className="flex items-start gap-4 mb-6">
+                          <motion.div 
+                            className="text-4xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
+                            whileHover={{ rotate: [0, -10, 10, 0] }}
+                            transition={{ duration: 0.3 }}
+                            style={{ color: skill.iconColor }}
                           >
-                            {skill.mastery}
+                            <skill.icon />
                           </motion.div>
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-2">
+                              <h4 className="text-xl font-bold text-white group-hover:text-accent-100 transition-colors">
+                                {skill.name}
+                              </h4>
+                              <motion.span 
+                                className={`text-xs px-3 py-1 rounded-full font-medium ${clusters[skill.cluster].color} backdrop-blur-sm flex items-center gap-1`}
+                                whileHover={{ scale: 1.1 }}
+                              >
+                                {renderClusterIcon(skill.cluster)}
+                                {clusters[skill.cluster].name}
+                              </motion.span>
+                            </div>
+                            <motion.div
+                              className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${category.color} text-white font-bold inline-block`}
+                              whileHover={{ scale: 1.05 }}
+                            >
+                              {skill.mastery}
+                            </motion.div>
+                          </div>
                         </div>
+
+                        <p className="text-gray-300 group-hover:text-gray-100 text-sm leading-relaxed transition-colors">
+                          {skill.context}
+                        </p>
+
+                        <motion.div
+                          className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${category.color} origin-left`}
+                          initial={{ scaleX: 0 }}
+                          whileHover={{ scaleX: 1 }}
+                          transition={{ duration: 0.3 }}
+                        />
                       </div>
-
-                      <p className="text-gray-300 group-hover:text-gray-100 text-sm leading-relaxed transition-colors">
-                        {skill.context}
-                      </p>
-
-                      <motion.div
-                        className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${category.color} origin-left`}
-                        initial={{ scaleX: 0 }}
-                        whileHover={{ scaleX: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </SkillMotionDiv>
+                );
+              })}
             </div>
           </motion.div>
         ))}
