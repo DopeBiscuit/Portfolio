@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, DocumentArrowDownIcon } from '@heroicons/react/24/outline';
 
 const Hero = () => {
   const [typedText, setTypedText] = useState('');
@@ -47,6 +47,16 @@ const Hero = () => {
       opacity: 1,
       transition: { duration: 0.8, ease: "easeOut" }
     }
+  };
+
+  const handleResumeDownload = () => {
+    // Create a download link for the resume
+    const link = document.createElement('a');
+    link.href = '/resume/Abdelrahman_Hany_Resume.pdf'; // Add your resume PDF to public/resume/
+    link.download = 'Abdelrahman_Hany_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -116,7 +126,7 @@ const Hero = () => {
               and distributed systems.
             </motion.p>
 
-            {/* Quick Stats - Updated with 4+ years */}
+            {/* Quick Stats */}
             <motion.div
               variants={itemVariants}
               className="grid grid-cols-4 gap-4 max-w-lg"
@@ -139,7 +149,7 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Updated with Resume Button */}
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4"
@@ -156,11 +166,21 @@ const Hero = () => {
                 </svg>
               </motion.a>
               
+              <motion.button
+                onClick={handleResumeDownload}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-secondary inline-flex items-center gap-2 justify-center sm:justify-start"
+              >
+                <DocumentArrowDownIcon className="w-4 h-4" />
+                Download Resume
+              </motion.button>
+
               <motion.a
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-secondary justify-center sm:justify-start"
+                className="btn-outline justify-center sm:justify-start"
               >
                 Get In Touch
               </motion.a>
@@ -189,7 +209,7 @@ const Hero = () => {
                 className="absolute inset-0 bg-gradient-to-br from-accent-500/30 to-primary-500/30 rounded-2xl blur-xl"
               />
               
-              {/* Photo container - Fixed dimensions for 600x800 portrait */}
+              {/* Photo container */}
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 className="relative w-72 h-96 md:w-80 md:h-[26rem] rounded-2xl overflow-hidden glass-effect border-2 border-accent-500/30"
@@ -204,7 +224,7 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-950/20 via-transparent to-transparent" />
               </motion.div>
 
-              {/* Floating tech badges around photo - Updated terms */}
+              {/* Floating tech badges around photo */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
@@ -232,7 +252,7 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Scroll indicator - moved to bottom center */}
+        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
