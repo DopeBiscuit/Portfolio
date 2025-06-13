@@ -82,7 +82,7 @@ const Projects = () => {
       ],
       image: "https://via.placeholder.com/400x250/FF9900/white?text=Airbnb+Scraper",
       github: null,
-      demo: "https://www.fiverr.com/dopebiscuit",
+      demo: "https://www.fiverr.com/boody_hany",
       fiverr: true,
       color: "from-orange-500 to-red-500",
       bgGradient: "from-orange-500/20 to-red-500/20",
@@ -139,7 +139,7 @@ const Projects = () => {
       type: "Desktop App",
       status: "Completed",
       mastery: "Senior Project",
-      featured: true,
+      featured: false,
       technologies: [
         { name: "Python", icon: SiPython, color: "#3776AB" },
         { name: "GUI Framework", icon: FaTools, color: "#8B5CF6" },
@@ -175,7 +175,7 @@ const Projects = () => {
       type: "Data Science",
       status: "Competition Entry",
       mastery: "Challenge Project",
-      featured: true,
+      featured: false,
       technologies: [
         { name: "Python", icon: SiPython, color: "#3776AB" },
         { name: "Jupyter", icon: SiJupyter, color: "#F37626" },
@@ -211,7 +211,7 @@ const Projects = () => {
       type: "Machine Learning",
       status: "Completed",
       mastery: "Research Implementation",
-      featured: true,
+      featured: false,
       technologies: [
         { name: "Python", icon: SiPython, color: "#3776AB" },
         { name: "Jupyter", icon: SiJupyter, color: "#F37626" },
