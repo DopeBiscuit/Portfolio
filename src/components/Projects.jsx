@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaCode, FaEye, FaRocket, FaLightbulb, FaTools, FaTrophy, FaAws, FaSlack, FaShoppingCart, FaMapMarkerAlt, FaClock, FaJava, FaChartBar, FaShieldAlt, FaBrain, FaGlobe, FaEnvelope, FaRobot, FaMicrochip } from 'react-icons/fa';
-import { SiReact, SiPython, SiJavascript, SiNodedotjs, SiTailwindcss, SiCplusplus, SiVerilog, SiInstagram, SiAwslambda, SiMongodb, SiExpress, SiFirebase, SiAndroid, SiPostgresql, SiJupyter, SiC, SiNasa, SiOpenai, SiFiverr } from 'react-icons/si';
+import { SiReact, SiPython, SiJavascript, SiNodedotjs, SiTailwindcss, SiCplusplus, SiInstagram, SiAwslambda, SiMongodb, SiExpress, SiFirebase, SiAndroid, SiPostgresql, SiJupyter, SiC, SiNasa, SiOpenai, SiFiverr } from 'react-icons/si';
 import { FaUpwork } from "react-icons/fa6";
+import { IoHardwareChip } from "react-icons/io5";
+
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -358,7 +360,7 @@ const Projects = () => {
       mastery: "IEEE Final Project",
       featured: false,
       technologies: [
-        { name: "Verilog", icon: SiVerilog, color: "#1E88E5" },
+        { name: "Verilog", icon: IoHardwareChip, color: "#1E88E5" },
         { name: "Digital Design", icon: FaMicrochip, color: "#FF6B35" },
         { name: "CPU Architecture", icon: FaTools, color: "#8E44AD" },
         { name: "RISC-V ISA", icon: FaCode, color: "#27AE60" }
