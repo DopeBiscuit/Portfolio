@@ -140,13 +140,13 @@ const About = () => {
                                     transition={{ delay: index * 0.2 }}
                                     className="relative flex items-center gap-6"
                                 >
-                                    {/* Timeline line - Fixed positioning */}
+                                    {/* Timeline line - Alternative with Tailwind classes */}
                                     {index < journeySteps.length - 1 && (
                                         <div
-                                            className="absolute w-0.5 h-8 bg-gradient-to-b from-accent-500 to-primary-500"
+                                            className="absolute w-0.5 h-20 bg-gradient-to-b from-accent-500 to-primary-500"
                                             style={{
-                                                left: '24px', // Centers line with 48px (w-12) circle
-                                                top: '48px',  // Starts at bottom edge of circle
+                                                left: '24px',
+                                                top: '48px',
                                                 transform: 'translateX(-50%)'
                                             }}
                                         />
