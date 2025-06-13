@@ -52,8 +52,8 @@ const Hero = () => {
   const handleResumeDownload = () => {
     // Create a download link for the resume
     const link = document.createElement('a');
-    link.href = '/resume/Abdelrahman_Hany_Resume.pdf';
-    link.download = 'Abdelrahman_Hany_Resume.pdf';
+    link.href = '/resume.pdf';
+    link.download = 'Abdelrahman_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -189,7 +189,7 @@ const Hero = () => {
               <motion.button
                 onClick={() => scrollToSection('contact')}
                 whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileTap={{ scale: 0.95 }}  
                 className="btn-secondary w-48 text-sm whitespace-nowrap px-6 py-3 flex items-center justify-center gap-2"
               >
                 Get In Touch
