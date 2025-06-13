@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-dark-950 text-gray-100 font-sans;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-900;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-accent-500 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent-400;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-dark-900/50 backdrop-blur-xl border border-dark-700/50;
+  }
+  
+  .glow-border {
+    @apply border border-accent-500/30 shadow-lg shadow-accent-500/20;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-400 to-primary-400 bg-clip-text text-transparent;
+  }
+  
+  .tech-badge {
+    @apply px-3 py-1 text-xs font-medium bg-dark-800/50 border border-dark-700 rounded-full 
+           hover:border-accent-500/50 hover:bg-accent-500/10 transition-all duration-300 cursor-default;
+  }
+  
+  .project-card {
+    @apply glass-effect rounded-xl p-6 hover:border-accent-500/50 
+           hover:shadow-2xl hover:shadow-accent-500/10 transition-all duration-500 
+           transform hover:-translate-y-2 group;
+  }
+  
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-accent-600 to-primary-600 
+           text-white font-medium rounded-lg hover:from-accent-500 hover:to-primary-500 
+           transition-all duration-300 transform hover:scale-105 hover:shadow-lg 
+           hover:shadow-accent-500/25 active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 glass-effect border border-dark-700 text-gray-300 
+           font-medium rounded-lg hover:border-accent-500/50 hover:text-white 
+           transition-all duration-300 transform hover:scale-105;
+  }
+}
+
+/* Custom animations */
+.animate-typing {
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #d946ef }
+}
