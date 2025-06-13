@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaCode, FaEye, FaRocket, FaLightbulb, FaTools, FaTrophy, FaAws, FaSlack, FaShoppingCart, FaMapMarkerAlt, FaClock, FaJava, FaChartBar, FaShieldAlt, FaBrain, FaGlobe, FaEnvelope, FaRobot } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaCode, FaEye, FaRocket, FaLightbulb, FaTools, FaTrophy, FaAws, FaSlack, FaShoppingCart, FaMapMarkerAlt, FaClock, FaJava, FaChartBar, FaShieldAlt, FaBrain, FaGlobe, FaEnvelope, FaRobot, FaMicrochip } from 'react-icons/fa';
 import { SiReact, SiPython, SiJavascript, SiNodedotjs, SiTailwindcss, SiCplusplus, SiVerilog, SiInstagram, SiAwslambda, SiMongodb, SiExpress, SiFirebase, SiAndroid, SiPostgresql, SiJupyter, SiC, SiNasa, SiOpenai, SiFiverr } from 'react-icons/si';
 import { FaUpwork } from "react-icons/fa6";
 
@@ -346,6 +346,42 @@ const Projects = () => {
         "Data structure optimization",
         "User interface design"
       ]
+    },
+    {
+      id: 10,
+      title: "RISC-V Processor with Verilog",
+      subtitle: "Verilog • Digital Design • CPU Architecture",
+      description: "A comprehensive RISC-V processor implementation in Verilog supporting 5 of 6 instruction formats. Features 30+ instructions covering 75% of the reference design, including I-type, R-type, J-type, S-type, and B-type instruction formats with full pipeline architecture.",
+      category: "hardware",
+      type: "Hardware Design",
+      status: "Completed",
+      mastery: "IEEE Final Project",
+      featured: false,
+      technologies: [
+        { name: "Verilog", icon: SiVerilog, color: "#1E88E5" },
+        { name: "Digital Design", icon: FaMicrochip, color: "#FF6B35" },
+        { name: "CPU Architecture", icon: FaTools, color: "#8E44AD" },
+        { name: "RISC-V ISA", icon: FaCode, color: "#27AE60" }
+      ],
+      features: [
+        "5 instruction format support",
+        "30+ RISC-V instructions",
+        "Pipeline architecture",
+        "Instruction decoding & execution",
+        "Register file management"
+      ],
+      image: "https://via.placeholder.com/400x250/1E88E5/white?text=RISC-V+CPU",
+      github: "https://github.com/DopeBiscuit/RISC-V-Processor-Verilog",
+      demo: null,
+      color: "from-blue-600 to-purple-600",
+      bgGradient: "from-blue-600/20 to-purple-600/20",
+      learnings: [
+        "RISC-V instruction set architecture",
+        "Digital logic design principles",
+        "CPU pipeline implementation",
+        "Verilog hardware description language",
+        "Computer architecture fundamentals"
+      ]
     }
   ];
 
@@ -392,12 +428,20 @@ const Projects = () => {
       color: 'from-red-500 to-orange-500',
       count: projects.filter(p => p.category === 'ml').length 
     },
+    
     { 
       key: 'embedded', 
       label: 'Embedded', 
       icon: FaMapMarkerAlt, 
       color: 'from-gray-500 to-blue-500',
       count: projects.filter(p => p.category === 'embedded').length 
+    },
+    { 
+      key: 'hardware', 
+      label: 'Hardware Design', 
+      icon: FaMicrochip, 
+      color: 'from-blue-600 to-purple-600',
+      count: projects.filter(p => p.category === 'hardware').length 
     },
     { 
       key: 'tools', 
@@ -527,7 +571,7 @@ const Projects = () => {
             Featured <span className="bg-gradient-to-r from-accent-400 via-primary-400 to-green-400 bg-clip-text text-transparent">Projects</span>
           </h2>
           <p className="text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed">
-            From <span className="text-green-400 font-medium">professional automation bots</span> to <span className="text-blue-400 font-medium">NASA Space Apps challenges</span> — 
+            From <span className="text-green-400 font-medium">professional automation bots</span> to <span className="text-blue-400 font-medium">NASA Space Apps challenges,</span> 
             <span className="text-accent-400 font-medium"> diverse solutions across multiple domains</span>
           </p>
         </motion.div>
@@ -931,7 +975,7 @@ const Projects = () => {
                 Ready to <span className="bg-gradient-to-r from-accent-400 to-primary-400 bg-clip-text text-transparent">Collaborate</span>?
               </h3>
               <p className="text-gray-300 text-lg mb-6 max-w-2xl">
-                From <span className="text-green-400 font-medium">professional automation bots</span> to <span className="text-blue-400 font-medium">innovative solutions</span> — let's build something amazing together!
+                From <span className="text-green-400 font-medium">professional automation bots</span> to <span className="text-blue-400 font-medium">innovative solutions</span>, let's build something amazing together!
               </p>
               <motion.a
                 href="#contact"

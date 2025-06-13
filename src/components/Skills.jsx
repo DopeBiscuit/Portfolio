@@ -771,7 +771,7 @@ const Skills = () => {
             Technical <span className="bg-gradient-to-r from-accent-400 via-primary-400 to-green-400 bg-clip-text text-transparent">Arsenal</span>
           </h2>
           <p className="text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed">
-            An honest, no-BS breakdown of my technical capabilities — 
+          A comprehensive breakdown of my technical capabilities,  
             <span className="text-accent-400 font-medium"> from daily weapons to emerging skills</span>
           </p>
         </motion.div>
@@ -861,7 +861,7 @@ const Skills = () => {
                 Ready to <span className="bg-gradient-to-r from-accent-400 to-primary-400 bg-clip-text text-transparent">collaborate</span>?
               </h3>
               <p className="text-gray-300 text-lg mb-6 max-w-2xl">
-                <span className="text-accent-400 font-medium">Continuous learner</span> — 
+                <span className="text-accent-400 font-medium">Continuous learner</span>, 
                 Always exploring new technologies and pushing boundaries
               </p>
               <motion.a

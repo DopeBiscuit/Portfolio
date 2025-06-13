@@ -86,7 +86,7 @@ const About = () => {
                                     an unexpected turn when I discovered the limitless potential of software development.
                                 </p>
                                 <p className="text-gray-300 leading-relaxed">
-                                    Today, I bridge both worlds — bringing the <em className="text-primary-400">precision of hardware thinking </em>
+                                    Today, I bridge both worlds, bringing the <em className="text-primary-400">precision of hardware thinking </em>
                                     to scalable software solutions.
                                 </p>
                             </div>
