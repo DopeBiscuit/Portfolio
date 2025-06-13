@@ -33,7 +33,7 @@ const ScrollToTop = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 bg-accent-600 text-white rounded-full shadow-lg hover:bg-accent-500 transition-colors duration-300"
+          className="fixed bottom-8 right-8 z-40 p-3 bg-accent-600 text-white rounded-full shadow-lg hover:bg-accent-500 transition-colors duration-300"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >

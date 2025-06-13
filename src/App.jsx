@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from './components/SEO';
 import Navbar from './components/Navbar';
+import MobileNavbar from './components/MobileNavbar'; // Add this
 import Hero from './components/Hero';
 import BackgroundAnimation from './components/BackgroundAnimation';
 import ScrollToTop from './components/ScrollToTop';
@@ -17,7 +18,7 @@ const Contact = lazy(() => import('./components/Contact'));
 
 // Loading component for lazy-loaded sections
 const SectionLoader = () => (
-  <div className="flex items-center justify-center py-20">
+  <div className="flex items-center justify-center section-padding">
     <div className="w-8 h-8 border-2 border-accent-500/30 border-t-accent-500 rounded-full animate-spin"></div>
   </div>
 );
@@ -56,7 +57,7 @@ function App() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="text-2xl font-bold gradient-text"
+                  className="text-xl font-bold gradient-text sm:text-2xl"
                 >
                   Loading Portfolio...
                 </motion.h2>
@@ -72,7 +73,15 @@ function App() {
             transition={{ duration: 0.5 }}
           >
             <BackgroundAnimation />
-            <Navbar />
+            
+            {/* Desktop Navbar */}
+            <div className="hidden md:block">
+              <Navbar />
+            </div>
+            
+            {/* Mobile Navbar */}
+            <MobileNavbar />
+            
             <main>
               <Hero />
               

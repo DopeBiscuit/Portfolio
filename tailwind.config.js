@@ -6,6 +6,18 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '480px',
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1536px',
+        // Custom breakpoints
+        'mobile': '320px',
+        'tablet': '768px',
+        'desktop': '1024px',
+      },
       colors: {
         primary: {
           50: '#f0f9ff',
@@ -49,11 +61,17 @@ export default {
         'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
         'mono': ['JetBrains Mono', 'ui-monospace', 'monospace'],
       },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
+        '128': '32rem',
+      },
       animation: {
         'glow': 'glow 2s ease-in-out infinite alternate',
         'float': 'float 6s ease-in-out infinite',
         'slide-up': 'slide-up 0.5s ease-out',
         'fade-in': 'fade-in 0.6s ease-out',
+        'pulse-slow': 'pulse 3s ease-in-out infinite',
       },
       keyframes: {
         glow: {
