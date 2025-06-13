@@ -60,12 +60,15 @@ const Hero = () => {
   };
 
   const scrollToSection = (sectionId) => {
+    console.log('Button clicked, scrolling to:', sectionId); // Debug log
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
+    } else {
+      console.log('Element not found:', sectionId); // Debug log
     }
   };
 
@@ -159,16 +162,16 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            {/* CTA Buttons - Fixed */}
+            {/* CTA Buttons - Fixed with z-index */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-4 relative z-[60]"
             >
               <motion.button
                 onClick={() => scrollToSection('projects')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary w-48 text-sm whitespace-nowrap px-6 py-3 flex items-center justify-center gap-2"
+                className="btn-primary w-48 text-sm whitespace-nowrap px-6 py-3 flex items-center justify-center gap-2 relative z-[60]"
               >
                 Explore My Work
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -180,7 +183,7 @@ const Hero = () => {
                 onClick={handleResumeDownload}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-secondary w-48 text-sm whitespace-nowrap px-6 py-3 flex items-center justify-center gap-2"
+                className="btn-secondary w-48 text-sm whitespace-nowrap px-6 py-3 flex items-center justify-center gap-2 relative z-[60]"
               >
                 <DocumentArrowDownIcon className="w-4 h-4" />
                 Download Resume
@@ -190,7 +193,7 @@ const Hero = () => {
                 onClick={() => scrollToSection('contact')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}  
-                className="btn-secondary w-48 text-sm whitespace-nowrap px-6 py-3 flex items-center justify-center gap-2"
+                className="btn-secondary w-48 text-sm whitespace-nowrap px-6 py-3 flex items-center justify-center gap-2 relative z-[60]"
               >
                 Get In Touch
               </motion.button>
