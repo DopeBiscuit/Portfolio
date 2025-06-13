@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaCode, FaEye, FaRocket, FaLightbulb, FaTools, FaTrophy, FaAws, FaSlack, FaUpwork, FaShoppingCart, FaMapMarkerAlt, FaClock, FaChartBar, FaShieldAlt, FaBrain, FaGlobe } from 'react-icons/fa';
-import { SiReact, SiPython, SiJavascript, SiNodedotjs, SiTailwindcss, SiCplusplus, SiVerilog, SiInstagram, SiAwslambda, SiMongodb, SiExpress, SiFirebase, SiAndroid, SiJava, SiPostgresql, SiJupyter, SiC, SiNasa } from 'react-icons/si';
+import { FaGithub, FaExternalLinkAlt, FaCode, FaEye, FaRocket, FaLightbulb, FaTools, FaTrophy, FaAws, FaSlack, FaUpwork, FaShoppingCart, FaMapMarkerAlt, FaClock, FaJava,FaChartBar, FaShieldAlt, FaBrain, FaGlobe } from 'react-icons/fa';
+import { SiReact, SiPython, SiJavascript, SiNodedotjs, SiTailwindcss, SiCplusplus, SiVerilog, SiInstagram, SiAwslambda, SiMongodb, SiExpress, SiFirebase, SiAndroid, SiPostgresql, SiJupyter, SiC, SiNasa } from 'react-icons/si';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -239,7 +239,7 @@ const Projects = () => {
       status: "Completed",
       mastery: "Junior Project",
       technologies: [
-        { name: "Java", icon: SiJava, color: "#ED8B00" },
+        { name: "Java", icon: FaJava, color: "#ED8B00" },
         { name: "CSS", icon: FaCode, color: "#1572B6" },
         { name: "Web Development", icon: FaGlobe, color: "#28A745" },
         { name: "Educational Tech", icon: FaLightbulb, color: "#F59E0B" }
