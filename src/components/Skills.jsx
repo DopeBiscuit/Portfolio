@@ -6,10 +6,10 @@ import {
   SiDocker, SiAmazonaws, SiRedis, SiJava, SiMongodb,
   SiBootstrap, SiTailwindcss, SiGithubactions, SiFigma,
   SiCplusplus, SiHtml5, SiCss3, SiMysql, SiLinux,
-  SiArduino, SiFastapi, SiGoogleappsscript, SiVisualstudio,
-  SiGit
+  SiArduino, SiFastapi, SiGit
 } from 'react-icons/si';
-import { FaCode, FaTools, FaMicrochip, FaPalette, FaGrid3x3 } from 'react-icons/fa';
+import { FaCode, FaGoogle, FaTools, FaMicrochip, FaPalette, FaGrid3x3 } from 'react-icons/fa';
+import { VscCode } from 'react-icons/vsc'; 
 
 const Skills = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -73,7 +73,7 @@ const Skills = () => {
             name: 'Google Apps Script',
             context: 'Automation & integration with Google Workspace',
             cluster: 'backend',
-            icon: SiGoogleappsscript,
+            icon: FaGoogle,
             iconColor: '#4285F4',
             mastery: 'Advanced',
             sparkles: true
@@ -90,7 +90,7 @@ const Skills = () => {
           name: 'VS Code',
           context: 'Primary development environment',
           cluster: 'tools',
-          icon: SiVisualstudio,
+          icon: VscCode,
           iconColor: '#007ACC',
           mastery: 'Expert'
         }
