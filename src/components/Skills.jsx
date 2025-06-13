@@ -8,8 +8,9 @@ import {
   SiCplusplus, SiHtml5, SiMysql, SiLinux,
   SiArduino, SiFastapi, SiGit, SiGoogleappsscript
 } from 'react-icons/si';
-import { FaCode, FaJava, FaTools, FaMicrochip, FaPalette, FaGrid3x3 } from 'react-icons/fa';
+import { FaCode, FaJava, FaTools, FaMicrochip, FaPalette} from 'react-icons/fa';
 import { VscCode } from 'react-icons/vsc'; 
+import { BsFillGrid3X3GapFill } from "react-icons/bs";
 
 
 const Skills = () => {
@@ -387,7 +388,7 @@ const Skills = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <FaGrid3x3 />
+          <BsFillGrid3X3GapFill />
           View All {getTotalSkillCount()} Skills
         </motion.button>
       </div>
