@@ -10,6 +10,7 @@ import {
   CheckCircleIcon,
   ExclamationTriangleIcon 
 } from '@heroicons/react/24/outline';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -96,7 +97,7 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+  
     if (!validateForm()) {
       setFormStatus({
         loading: false,
@@ -106,41 +107,44 @@ const Contact = () => {
       });
       return;
     }
-
+  
     setFormStatus({
       loading: true,
       success: false,
       error: false,
       message: ''
     });
-
+  
     try {
-      // Simulate form processing
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Create mailto link as the primary method for now
-      const mailtoLink = `mailto:abdulrahman.hany003@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
-      
-      // Open email client
-      window.open(mailtoLink, '_blank');
-      
+      // You can call emailjs.init('YOUR_PUBLIC_KEY') once in your app (not needed for every send in v3+)
+  
+      await emailjs.send(
+        'service_vnfojcv',    // e.g., 'service_xxxxx'
+        'template_5975vav',   // e.g., 'template_xxxxx'
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        'zFIw2-vGMFWIVa3tu'     // e.g., 'user_xxxxxxxxx'
+      );
+  
       setFormStatus({
         loading: false,
         success: true,
         error: false,
-        message: 'Thank you! Your email client should open now with your message pre-filled. I\'ll get back to you soon!'
+        message: "Thank you! Your message has been sent successfully. I'll get back to you soon."
       });
-
-      // Reset form
       setFormData({ name: '', email: '', subject: '', message: '' });
-
+  
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error('EmailJS Error:', error);
       setFormStatus({
         loading: false,
         success: false,
         error: true,
-        message: 'Sorry, there was an error. Please contact me directly via email at abdulrahman.hany003@gmail.com'
+        message: 'Sorry, there was an error sending your message. Please try again or contact me directly via email.'
       });
     }
   };
