@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { downloadResume } from '../utils/downloadUtils';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,19 +11,9 @@ const Navbar = () => {
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Achievements', href: '#achievements' },
-    { name: 'Resume', href: '#', special: true, isDownload: true },
+    { name: 'Resume', href: '/resume.pdf', special: true, download: 'Abdelrahman_Resume.pdf' },
     { name: 'Contact', href: '#contact', special: true },
   ];
-
-  const handleNavClick = (item, e) => {
-    if (item.isDownload) {
-      e.preventDefault();
-      downloadResume();
-    }
-    if (item.name !== 'Resume') {
-      setIsOpen(false);
-    }
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,13 +48,13 @@ const Navbar = () => {
               <motion.a
                 key={item.name}
                 href={item.href}
-                onClick={(e) => handleNavClick(item, e)}
+                download={item.download || undefined}
                 whileHover={{ scale: item.special ? 1.05 : 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 className={
                   item.special
-                    ? "relative px-6 py-2 bg-gradient-to-r from-accent-500/20 to-primary-500/20 hover:from-accent-500/30 hover:to-primary-500/30 text-accent-200 hover:text-white font-semibold rounded-full border border-accent-500/30 hover:border-accent-400/50 transition-all duration-300 shadow-lg hover:shadow-accent-500/25 cursor-pointer"
-                    : "text-gray-300 hover:text-white transition-colors duration-300 relative group cursor-pointer"
+                    ? "relative px-6 py-2 bg-gradient-to-r from-accent-500/20 to-primary-500/20 hover:from-accent-500/30 hover:to-primary-500/30 text-accent-200 hover:text-white font-semibold rounded-full border border-accent-500/30 hover:border-accent-400/50 transition-all duration-300 shadow-lg hover:shadow-accent-500/25"
+                    : "text-gray-300 hover:text-white transition-colors duration-300 relative group"
                 }
               >
                 {item.name}
@@ -105,11 +94,12 @@ const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                onClick={(e) => handleNavClick(item, e)}
+                download={item.download || undefined}
+                onClick={() => setIsOpen(false)}
                 className={
                   item.special
-                    ? "block py-3 px-4 mx-2 text-center bg-gradient-to-r from-accent-500/20 to-primary-500/20 text-accent-200 font-semibold rounded-full border border-accent-500/30 transition-all duration-300 cursor-pointer"
-                    : "block py-2 text-gray-300 hover:text-white transition-colors duration-300 cursor-pointer"
+                    ? "block py-3 px-4 mx-2 text-center bg-gradient-to-r from-accent-500/20 to-primary-500/20 text-accent-200 font-semibold rounded-full border border-accent-500/30 transition-all duration-300"
+                    : "block py-2 text-gray-300 hover:text-white transition-colors duration-300"
                 }
               >
                 {item.name}
