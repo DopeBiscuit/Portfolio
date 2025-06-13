@@ -3,13 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 // Import real tech icons - CORRECTED NAMES
 import { 
   SiPython, SiJavascript, SiReact, SiNodedotjs, SiTypescript,
-  SiDocker, SiAmazonaws, SiRedis, SiJava, SiMongodb,
+  SiDocker, SiAmazonwebservices, SiRedis, SiMongodb,
   SiBootstrap, SiTailwindcss, SiGithubactions, SiFigma,
-  SiCplusplus, SiHtml5, SiCss3, SiMysql, SiLinux,
-  SiArduino, SiFastapi, SiGit
+  SiCplusplus, SiHtml5, SiMysql, SiLinux,
+  SiArduino, SiFastapi, SiGit, SiGoogleappsscript
 } from 'react-icons/si';
-import { FaCode, FaGoogle, FaTools, FaMicrochip, FaPalette, FaGrid3x3 } from 'react-icons/fa';
+import { FaCode, FaJava, FaTools, FaMicrochip, FaPalette, FaGrid3x3 } from 'react-icons/fa';
 import { VscCode } from 'react-icons/vsc'; 
+
 
 const Skills = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -73,7 +74,7 @@ const Skills = () => {
             name: 'Google Apps Script',
             context: 'Automation & integration with Google Workspace',
             cluster: 'backend',
-            icon: FaGoogle,
+            icon: SiGoogleappsscript,
             iconColor: '#4285F4',
             mastery: 'Advanced',
             sparkles: true
@@ -203,7 +204,7 @@ const Skills = () => {
           name: 'AWS',
           context: 'Cloud infrastructure & deployment',
           cluster: 'tools',
-          icon: SiAmazonaws,
+          icon: SiAmazonwebservices,
           iconColor: '#FF9900',
           mastery: 'Exploring',
           pulse: true
@@ -240,7 +241,7 @@ const Skills = () => {
           name: 'Java',
           context: 'Object-oriented programming & algorithms',
           cluster: 'backend',
-          icon: SiJava,
+          icon: FaJava,
           iconColor: '#ED8B00',
           mastery: 'Familiar'
         },
