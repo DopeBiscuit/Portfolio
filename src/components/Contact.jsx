@@ -6,8 +6,11 @@ import {
   EnvelopeIcon, 
   PhoneIcon, 
   MapPinIcon,
-  PaperAirplaneIcon 
+  PaperAirplaneIcon,
+  CheckCircleIcon,
+  ExclamationTriangleIcon 
 } from '@heroicons/react/24/outline';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -22,19 +25,134 @@ const Contact = () => {
     message: ''
   });
 
+  const [formStatus, setFormStatus] = useState({
+    loading: false,
+    success: false,
+    error: false,
+    message: ''
+  });
+
+  const [fieldErrors, setFieldErrors] = useState({});
+
+  // Validation rules
+  const validateField = (name, value) => {
+    switch (name) {
+      case 'name':
+        return value.length < 2 ? 'Name must be at least 2 characters' : '';
+      case 'email':
+        return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? 'Please enter a valid email' : '';
+      case 'subject':
+        return value.length < 3 ? 'Subject must be at least 3 characters' : '';
+      case 'message':
+        return value.length < 10 ? 'Message must be at least 10 characters' : '';
+      default:
+        return '';
+    }
+  };
+
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
+    });
+
+    // Clear field error when user starts typing
+    if (fieldErrors[name]) {
+      setFieldErrors({
+        ...fieldErrors,
+        [name]: ''
+      });
+    }
+
+    // Clear form status when user makes changes
+    if (formStatus.success || formStatus.error) {
+      setFormStatus({
+        loading: false,
+        success: false,
+        error: false,
+        message: ''
+      });
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    const error = validateField(name, value);
+    setFieldErrors({
+      ...fieldErrors,
+      [name]: error
     });
   };
 
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    const errors = {};
+    Object.keys(formData).forEach(field => {
+      const error = validateField(field, formData[field]);
+      if (error) errors[field] = error;
+    });
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Implement form submission
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! I\'ll get back to you soon.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    
+    if (!validateForm()) {
+      setFormStatus({
+        loading: false,
+        success: false,
+        error: true,
+        message: 'Please fix the errors above'
+      });
+      return;
+    }
+
+    setFormStatus({
+      loading: true,
+      success: false,
+      error: false,
+      message: ''
+    });
+
+    try {
+      // Initialize EmailJS with your public key
+      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_name: 'Abdelrahman Hany',
+        reply_to: formData.email,
+      };
+
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        templateParams
+      );
+
+      setFormStatus({
+        loading: false,
+        success: true,
+        error: false,
+        message: 'Thank you! Your message has been sent successfully. I\'ll get back to you soon.'
+      });
+
+      // Reset form
+      setFormData({ name: '', email: '', subject: '', message: '' });
+
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setFormStatus({
+        loading: false,
+        success: false,
+        error: true,
+        message: 'Sorry, there was an error sending your message. Please try again or contact me directly via email.'
+      });
+    }
   };
 
   const contactInfo = [
@@ -182,15 +300,47 @@ const Contact = () => {
                   ))}
                 </div>
               </div>
+
+              {/* Response Time Info */}
+              <motion.div 
+                variants={itemVariants}
+                className="glass-effect rounded-lg p-4 border border-accent-500/20"
+              >
+                <h4 className="text-lg font-semibold text-white mb-2">Response Time</h4>
+                <p className="text-gray-300 text-sm">
+                  I typically respond to messages within 24 hours during business days.
+                  For urgent matters, feel free to reach out via phone or WhatsApp.
+                </p>
+              </motion.div>
             </motion.div>
 
             {/* Contact Form */}
             <motion.div variants={itemVariants}>
               <form onSubmit={handleSubmit} className="glass-effect rounded-2xl p-8 space-y-6">
+                {/* Form Status Message */}
+                {(formStatus.success || formStatus.error) && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`flex items-center gap-3 p-4 rounded-lg ${
+                      formStatus.success 
+                        ? 'bg-green-500/20 border border-green-500/30 text-green-400' 
+                        : 'bg-red-500/20 border border-red-500/30 text-red-400'
+                    }`}
+                  >
+                    {formStatus.success ? (
+                      <CheckCircleIcon className="w-5 h-5 flex-shrink-0" />
+                    ) : (
+                      <ExclamationTriangleIcon className="w-5 h-5 flex-shrink-0" />
+                    )}
+                    <p className="text-sm">{formStatus.message}</p>
+                  </motion.div>
+                )}
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                      Your Name
+                      Your Name *
                     </label>
                     <input
                       type="text"
@@ -198,14 +348,22 @@ const Contact = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       required
-                      className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-accent-500 transition-colors"
+                      className={`w-full px-4 py-3 bg-dark-800 border rounded-lg text-white placeholder-gray-500 focus:outline-none transition-colors ${
+                        fieldErrors.name 
+                          ? 'border-red-500 focus:border-red-400' 
+                          : 'border-dark-700 focus:border-accent-500'
+                      }`}
                       placeholder="John Doe"
                     />
+                    {fieldErrors.name && (
+                      <p className="text-red-400 text-sm mt-1">{fieldErrors.name}</p>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                      Email Address
+                      Email Address *
                     </label>
                     <input
                       type="email"
@@ -213,16 +371,24 @@ const Contact = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       required
-                      className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-accent-500 transition-colors"
+                      className={`w-full px-4 py-3 bg-dark-800 border rounded-lg text-white placeholder-gray-500 focus:outline-none transition-colors ${
+                        fieldErrors.email 
+                          ? 'border-red-500 focus:border-red-400' 
+                          : 'border-dark-700 focus:border-accent-500'
+                      }`}
                       placeholder="john@example.com"
                     />
+                    {fieldErrors.email && (
+                      <p className="text-red-400 text-sm mt-1">{fieldErrors.email}</p>
+                    )}
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
-                    Subject
+                    Subject *
                   </label>
                   <input
                     type="text"
@@ -230,36 +396,64 @@ const Contact = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     required
-                    className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-accent-500 transition-colors"
+                    className={`w-full px-4 py-3 bg-dark-800 border rounded-lg text-white placeholder-gray-500 focus:outline-none transition-colors ${
+                      fieldErrors.subject 
+                        ? 'border-red-500 focus:border-red-400' 
+                        : 'border-dark-700 focus:border-accent-500'
+                    }`}
                     placeholder="Project Discussion"
                   />
+                  {fieldErrors.subject && (
+                    <p className="text-red-400 text-sm mt-1">{fieldErrors.subject}</p>
+                  )}
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                    Message
+                    Message *
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-accent-500 transition-colors resize-none"
+                    className={`w-full px-4 py-3 bg-dark-800 border rounded-lg text-white placeholder-gray-500 focus:outline-none transition-colors resize-none ${
+                      fieldErrors.message 
+                        ? 'border-red-500 focus:border-red-400' 
+                        : 'border-dark-700 focus:border-accent-500'
+                    }`}
                     placeholder="Tell me about your project or how we can work together..."
                   />
+                  {fieldErrors.message && (
+                    <p className="text-red-400 text-sm mt-1">{fieldErrors.message}</p>
+                  )}
                 </div>
 
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full btn-primary flex items-center justify-center gap-2"
+                  disabled={formStatus.loading}
+                  whileHover={{ scale: formStatus.loading ? 1 : 1.02 }}
+                  whileTap={{ scale: formStatus.loading ? 1 : 0.98 }}
+                  className={`w-full btn-primary flex items-center justify-center gap-2 ${
+                    formStatus.loading ? 'opacity-70 cursor-not-allowed' : ''
+                  }`}
                 >
-                  <PaperAirplaneIcon className="w-5 h-5" />
-                  Send Message
+                  {formStatus.loading ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <PaperAirplaneIcon className="w-5 h-5" />
+                      Send Message
+                    </>
+                  )}
                 </motion.button>
               </form>
             </motion.div>
