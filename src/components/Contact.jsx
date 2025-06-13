@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { SiUpwork, SiFiverr, SiLinkedin, SiGithub } from "react-icons/si";
 import { 
   EnvelopeIcon, 
   PhoneIcon, 
@@ -61,17 +62,22 @@ const Contact = () => {
     {
       name: 'GitHub',
       url: 'https://github.com/DopeBiscuit',
-      icon: '💻'
+      icon: <SiGithub className="w-6 h-6" />
     },
     {
       name: 'LinkedIn',
       url: 'https://linkedin.com/in/AbdelrahmanHany2026',
-      icon: '💼'
+      icon: <SiLinkedin className="w-6 h-6" />
     },
     {
       name: 'Fiverr',
       url: 'https://www.fiverr.com/users/boody_hany',
-      icon: '💚'
+      icon: <SiFiverr className="w-6 h-6" />
+    },
+    {
+      name: 'Upwork',
+      url: 'https://www.upwork.com/freelancers/~01e92e0c8b7675915f',
+      icon: <SiUpwork className="w-6 h-6" />
     }
   ];
 
