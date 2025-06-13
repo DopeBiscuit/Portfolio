@@ -184,8 +184,8 @@ const About = () => {
                                 🚀 What's Next?
                             </h4>
                             <p className="text-gray-300 leading-relaxed">
-                                Building the next generation of <span className="text-accent-400 font-medium">distributed systems</span>
-                                and exploring cutting-edge technologies like <span className="text-primary-400 font-medium">AI integration</span>
+                                Building the next generation of <span className="text-accent-400 font-medium">distributed systems </span>
+                                and exploring cutting-edge technologies like <span className="text-primary-400 font-medium">AI integration </span>
                                 and <span className="text-green-400 font-medium">cloud architecture</span>.
                             </p>
                         </motion.div>
