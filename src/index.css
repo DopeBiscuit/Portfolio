@@ -51,7 +51,7 @@
   .project-card {
     @apply glass-effect rounded-xl p-6 hover:border-accent-500/50 
            hover:shadow-2xl hover:shadow-accent-500/10 transition-all duration-500 
-           transform hover:-translate-y-2 group;
+           transform hover:-translate-y-2;
   }
   
   .btn-primary {
