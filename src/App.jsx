@@ -3,11 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Skills from './components/Skills';
 import Projects from './components/Projects';
-import Freelance from './components/Freelance';
+import Skills from './components/Skills';
 import Achievements from './components/Achievements';
-import Resume from './components/Resume';
+import Freelance from './components/Freelance';
 import Contact from './components/Contact';
 import BackgroundAnimation from './components/BackgroundAnimation';
 import ScrollToTop from './components/ScrollToTop';
@@ -63,11 +62,10 @@ function App() {
           <main>
             <Hero />
             <About />
-            <Skills />
             <Projects />
-            <Freelance />
+            <Skills />
             <Achievements />
-            {/* <Resume /> */}
+            <Freelance />
             <Contact />
           </main>
           <ScrollToTop />

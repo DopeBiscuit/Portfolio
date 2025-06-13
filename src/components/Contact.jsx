@@ -10,7 +10,6 @@ import {
   CheckCircleIcon,
   ExclamationTriangleIcon 
 } from '@heroicons/react/24/outline';
-import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -116,41 +115,32 @@ const Contact = () => {
     });
 
     try {
-      // Initialize EmailJS with your public key
-      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
-
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_name: 'Abdelrahman Hany',
-        reply_to: formData.email,
-      };
-
-      await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
-        templateParams
-      );
-
+      // Simulate form processing
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Create mailto link as the primary method for now
+      const mailtoLink = `mailto:abdulrahman.hany003@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
+      
+      // Open email client
+      window.open(mailtoLink, '_blank');
+      
       setFormStatus({
         loading: false,
         success: true,
         error: false,
-        message: 'Thank you! Your message has been sent successfully. I\'ll get back to you soon.'
+        message: 'Thank you! Your email client should open now with your message pre-filled. I\'ll get back to you soon!'
       });
 
       // Reset form
       setFormData({ name: '', email: '', subject: '', message: '' });
 
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error('Form submission error:', error);
       setFormStatus({
         loading: false,
         success: false,
         error: true,
-        message: 'Sorry, there was an error sending your message. Please try again or contact me directly via email.'
+        message: 'Sorry, there was an error. Please contact me directly via email at abdulrahman.hany003@gmail.com'
       });
     }
   };
