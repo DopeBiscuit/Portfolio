@@ -11,7 +11,7 @@ const Navbar = () => {
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Achievements', href: '#achievements' },
-    { name: 'Resume', href: '/resume.pdf', special: true, download: 'Abdelrahman_Resume.pdf' },
+    { name: 'Resume', href: '/abdelrahman_resume.pdf', special: true, download: 'Abdelrahman_Resume.pdf' },
     { name: 'Contact', href: '#contact', special: true },
   ];
 

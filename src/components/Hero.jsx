@@ -52,7 +52,7 @@ const Hero = () => {
   const handleResumeDownload = () => {
     // Create a download link for the resume
     const link = document.createElement('a');
-    link.href = '/resume.pdf';
+    link.href = '/abdelrahman_resume.pdf';
     link.download = 'Abdelrahman_Resume.pdf';
     document.body.appendChild(link);
     link.click();
