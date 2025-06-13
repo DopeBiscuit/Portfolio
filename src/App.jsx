@@ -67,7 +67,7 @@ function App() {
             <Projects />
             <Freelance />
             <Achievements />
-            <Resume />
+            {/* <Resume /> */}
             <Contact />
           </main>
           <ScrollToTop />
