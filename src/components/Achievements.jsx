@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { FaCertificate, FaTrophy, FaLaptopCode, FaExternalLinkAlt, FaUsers } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { FaCertificate, FaTrophy, FaLaptopCode, FaExternalLinkAlt, FaUsers, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 
 const achievements = [
   // Certificates
@@ -92,7 +92,8 @@ const achievements = [
 ];
 
 const categories = [
-  { key: "all", label: "All", icon: FaTrophy },
+  { key: "featured", label: "Featured", icon: FaTrophy },
+  { key: "all", label: "Show All", icon: FaChevronDown },
   { key: "certificate", label: "Certificates", icon: FaCertificate },
   { key: "award", label: "Awards", icon: FaTrophy },
   { key: "volunteer", label: "Community", icon: FaUsers },
@@ -123,18 +124,33 @@ const typeConfig = {
 };
 
 export default function Achievements() {
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState("featured");
+  const [showAll, setShowAll] = useState(false);
 
-  const filtered = activeTab === "all"
-    ? achievements
-    : achievements.filter((a) => a.type === activeTab);
+  // Smart filtering logic
+  const getFilteredAchievements = () => {
+    let filtered;
+    
+    if (activeTab === "featured") {
+      filtered = achievements.filter(a => a.featured);
+    } else if (activeTab === "all") {
+      filtered = achievements;
+      setShowAll(true);
+    } else {
+      filtered = achievements.filter(a => a.type === activeTab);
+    }
+    
+    // Sort to show featured items first
+    return filtered.sort((a, b) => {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      return new Date(b.date) - new Date(a.date);
+    });
+  };
 
-  // Sort to show featured items first
-  const sortedFiltered = filtered.sort((a, b) => {
-    if (a.featured && !b.featured) return -1;
-    if (!a.featured && b.featured) return 1;
-    return new Date(b.date) - new Date(a.date);
-  });
+  const filteredAchievements = getFilteredAchievements();
+  const featuredCount = achievements.filter(a => a.featured).length;
+  const totalCount = achievements.length;
 
   const getIcon = (type) => {
     const config = typeConfig[type];
@@ -148,6 +164,13 @@ export default function Achievements() {
       case 'award': return 'Award';
       case 'volunteer': return 'Community';
       default: return type;
+    }
+  };
+
+  const handleTabChange = (tabKey) => {
+    setActiveTab(tabKey);
+    if (tabKey !== "all") {
+      setShowAll(false);
     }
   };
 
@@ -172,7 +195,10 @@ export default function Achievements() {
             Achievements & <span className="text-accent-400">Certifications</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            A collection of my academic achievements, professional certifications, competition wins, and community contributions.
+            {activeTab === "featured" 
+              ? `Showcasing my top ${featuredCount} achievements. Click "Show All" to explore everything!`
+              : `Exploring ${filteredAchievements.length} ${activeTab === "all" ? "achievements" : activeTab === "certificate" ? "certificates" : activeTab === "award" ? "awards" : "community contributions"}.`
+            }
           </p>
         </motion.div>
 
@@ -185,95 +211,125 @@ export default function Achievements() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           {categories.map((cat) => {
-            const Icon = cat.icon;
+            const Icon = cat.key === "all" && showAll ? FaChevronUp : cat.icon;
+            const isActive = activeTab === cat.key;
+            const isShowAll = cat.key === "all";
+            
             return (
               <button
                 key={cat.key}
                 className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 ${
-                  activeTab === cat.key
+                  isActive
                     ? "bg-accent-500/20 text-accent-200 shadow-lg border border-accent-500/30"
+                    : isShowAll
+                    ? "bg-gradient-to-r from-accent-500/10 to-primary-500/10 text-accent-300 hover:from-accent-500/20 hover:to-primary-500/20 border border-accent-500/20"
                     : "bg-dark-800/50 text-gray-300 hover:bg-accent-500/10 hover:text-accent-300 border border-dark-700"
                 }`}
-                onClick={() => setActiveTab(cat.key)}
+                onClick={() => handleTabChange(cat.key)}
               >
                 <Icon className="text-lg" /> 
                 {cat.label}
+                {cat.key === "all" && (
+                  <span className="ml-1 text-xs bg-accent-500/20 px-2 py-0.5 rounded-full">
+                    {totalCount}
+                  </span>
+                )}
               </button>
             );
           })}
         </motion.div>
 
         {/* Achievements Grid */}
-        <motion.div 
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          {sortedFiltered.map((achievement, idx) => {
-            const config = typeConfig[achievement.type];
-            return (
-              <motion.div
-                key={achievement.title + achievement.date}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`relative bg-dark-900/70 backdrop-blur-sm border border-dark-700 rounded-2xl p-6 flex flex-col shadow-xl hover:shadow-accent-500/20 transition-all duration-300 hover:transform hover:scale-[1.02] hover:border-accent-500/30 ${
-                  achievement.featured ? 'ring-1 ring-accent-500/20' : ''
-                }`}
-              >
-                {/* Featured Badge */}
-                {achievement.featured && (
-                  <div className="absolute -top-2 -right-2 bg-accent-500 text-white text-xs px-2 py-1 rounded-full font-bold">
-                    Featured
-                  </div>
-                )}
-
-                {/* Header */}
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-3xl">{getIcon(achievement.type)}</span>
-                  <span className={`text-xs px-3 py-1 rounded-full font-medium ${config.bgClass} ${config.textClass}`}>
-                    {getTypeLabel(achievement.type)}
-                  </span>
-                </div>
-
-                {/* Content */}
-                <div className="flex-grow">
-                  <h3 className="text-lg font-semibold text-white mb-2 leading-tight">
-                    {achievement.title}
-                  </h3>
-                  
-                  <div className="text-sm text-gray-400 mb-3 flex items-center gap-2">
-                    <span className="font-medium">{achievement.issuer}</span>
-                    <span className="w-1 h-1 bg-gray-500 rounded-full"></span>
-                    <span className="font-mono text-accent-300">{achievement.date}</span>
-                  </div>
-
-                  {achievement.description && (
-                    <p className="text-gray-300 text-sm mb-4 leading-relaxed">
-                      {achievement.description}
-                    </p>
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={activeTab}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+          >
+            {filteredAchievements.map((achievement, idx) => {
+              const config = typeConfig[achievement.type];
+              return (
+                <motion.div
+                  key={achievement.title + achievement.date}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className={`relative bg-dark-900/70 backdrop-blur-sm border border-dark-700 rounded-2xl p-6 flex flex-col shadow-xl hover:shadow-accent-500/20 transition-all duration-300 hover:transform hover:scale-[1.02] hover:border-accent-500/30 ${
+                    achievement.featured ? 'ring-1 ring-accent-500/20' : ''
+                  }`}
+                >
+                  {/* Featured Badge */}
+                  {achievement.featured && (
+                    <div className="absolute -top-2 -right-2 bg-accent-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                      Featured
+                    </div>
                   )}
-                </div>
 
-                {/* Link */}
-                {achievement.link && (
-                  <a
-                    href={achievement.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-accent-300 hover:text-accent-400 text-sm font-medium transition-colors duration-200 mt-auto"
-                  >
-                    <FaExternalLinkAlt className="mr-2 text-xs" /> 
-                    View Credential
-                  </a>
-                )}
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-3xl">{getIcon(achievement.type)}</span>
+                    <span className={`text-xs px-3 py-1 rounded-full font-medium ${config.bgClass} ${config.textClass}`}>
+                      {getTypeLabel(achievement.type)}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-grow">
+                    <h3 className="text-lg font-semibold text-white mb-2 leading-tight">
+                      {achievement.title}
+                    </h3>
+                    
+                    <div className="text-sm text-gray-400 mb-3 flex items-center gap-2">
+                      <span className="font-medium">{achievement.issuer}</span>
+                      <span className="w-1 h-1 bg-gray-500 rounded-full"></span>
+                      <span className="font-mono text-accent-300">{achievement.date}</span>
+                    </div>
+
+                    {achievement.description && (
+                      <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                        {achievement.description}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Link */}
+                  {achievement.link && (
+                    <a
+                      href={achievement.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-accent-300 hover:text-accent-400 text-sm font-medium transition-colors duration-200 mt-auto"
+                    >
+                      <FaExternalLinkAlt className="mr-2 text-xs" /> 
+                      View Credential
+                    </a>
+                  )}
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Quick Expand Button (shown only in featured mode) */}
+        {activeTab === "featured" && (
+          <motion.div 
+            className="text-center mt-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <button
+              onClick={() => handleTabChange("all")}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-accent-500/10 to-primary-500/10 hover:from-accent-500/20 hover:to-primary-500/20 text-accent-300 rounded-full border border-accent-500/20 transition-all duration-300 hover:scale-105"
+            >
+              <FaChevronDown className="text-sm" />
+              View All {totalCount} Achievements
+            </button>
+          </motion.div>
+        )}
 
         {/* Stats */}
         <motion.div 
