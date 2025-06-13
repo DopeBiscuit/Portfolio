@@ -11,7 +11,7 @@ const Navbar = () => {
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Achievements', href: '#achievements' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact', href: '#contact', special: true }, // Mark as special
   ];
 
   useEffect(() => {
@@ -42,17 +42,30 @@ const Navbar = () => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <motion.a
                 key={item.name}
                 href={item.href}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: item.special ? 1.05 : 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="text-gray-300 hover:text-white transition-colors duration-300 relative group"
+                className={
+                  item.special
+                    ? // Special Contact button styling
+                      "relative px-6 py-2 bg-gradient-to-r from-accent-500/20 to-primary-500/20 hover:from-accent-500/30 hover:to-primary-500/30 text-accent-200 hover:text-white font-semibold rounded-full border border-accent-500/30 hover:border-accent-400/50 transition-all duration-300 shadow-lg hover:shadow-accent-500/25"
+                    : // Regular nav item styling
+                      "text-gray-300 hover:text-white transition-colors duration-300 relative group"
+                }
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-accent-500 to-primary-500 group-hover:w-full transition-all duration-300"></span>
+                {/* Regular underline for non-special items */}
+                {!item.special && (
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-accent-500 to-primary-500 group-hover:w-full transition-all duration-300"></span>
+                )}
+                {/* Subtle glow effect for Contact button */}
+                {item.special && (
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent-500/10 to-primary-500/10 blur-lg opacity-0 hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+                )}
               </motion.a>
             ))}
           </div>
@@ -84,7 +97,13 @@ const Navbar = () => {
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="block py-2 text-gray-300 hover:text-white transition-colors duration-300"
+                className={
+                  item.special
+                    ? // Special Contact button styling for mobile
+                      "block py-3 px-4 mx-2 text-center bg-gradient-to-r from-accent-500/20 to-primary-500/20 text-accent-200 font-semibold rounded-full border border-accent-500/30 transition-all duration-300"
+                    : // Regular mobile nav item styling
+                      "block py-2 text-gray-300 hover:text-white transition-colors duration-300"
+                }
               >
                 {item.name}
               </a>
@@ -92,7 +111,7 @@ const Navbar = () => {
           </div>
         </motion.div>
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 
