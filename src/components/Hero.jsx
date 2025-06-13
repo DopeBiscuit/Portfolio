@@ -52,11 +52,21 @@ const Hero = () => {
   const handleResumeDownload = () => {
     // Create a download link for the resume
     const link = document.createElement('a');
-    link.href = '/resume/Abdelrahman_Hany_Resume.pdf'; // Add your resume PDF to public/resume/
+    link.href = '/resume/Abdelrahman_Hany_Resume.pdf';
     link.download = 'Abdelrahman_Hany_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   };
 
   return (
@@ -149,13 +159,13 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            {/* CTA Buttons - Updated with Resume Button */}
+            {/* CTA Buttons - Fixed */}
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <motion.a
-                href="#projects"
+              <motion.button
+                onClick={() => scrollToSection('projects')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="btn-primary inline-flex items-center gap-2 justify-center sm:justify-start"
@@ -164,7 +174,7 @@ const Hero = () => {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </motion.a>
+              </motion.button>
               
               <motion.button
                 onClick={handleResumeDownload}
@@ -176,14 +186,14 @@ const Hero = () => {
                 Download Resume
               </motion.button>
 
-              <motion.a
-                href="#contact"
+              <motion.button
+                onClick={() => scrollToSection('contact')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-outline justify-center sm:justify-start"
+                className="btn-secondary justify-center sm:justify-start"
               >
                 Get In Touch
-              </motion.a>
+              </motion.button>
             </motion.div>
           </motion.div>
 
