@@ -5,7 +5,7 @@ import { ChevronDownIcon, DocumentArrowDownIcon } from '@heroicons/react/24/outl
 const Hero = () => {
   const [typedText, setTypedText] = useState('');
   const fullText = 'Computer & Systems Engineer';
-  
+
   useEffect(() => {
     let index = 0;
     const timer = setInterval(() => {
@@ -16,7 +16,7 @@ const Hero = () => {
         clearInterval(timer);
       }
     }, 100);
-    
+
     return () => clearInterval(timer);
   }, []);
 
@@ -62,7 +62,7 @@ const Hero = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
+      element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
@@ -131,8 +131,8 @@ const Hero = () => {
               variants={itemVariants}
               className="text-base md:text-lg text-gray-300 leading-relaxed max-w-xl"
             >
-              Transitioning from embedded systems to full-stack development, 
-              building scalable solutions with a focus on backend architecture 
+              Transitioning from embedded systems to full-stack development,
+              building scalable solutions with a focus on backend architecture
               and distributed systems.
             </motion.p>
 
@@ -168,19 +168,19 @@ const Hero = () => {
                 onClick={() => scrollToSection('projects')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary inline-flex items-center gap-2 justify-center sm:justify-start"
+                className="btn-primary w-48 text-sm whitespace-nowrap px-6 py-3 flex items-center justify-center gap-2"
               >
                 Explore My Work
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </motion.button>
-              
+
               <motion.button
                 onClick={handleResumeDownload}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-secondary inline-flex items-center gap-2 justify-center sm:justify-start"
+                className="btn-secondary w-48 text-sm whitespace-nowrap px-6 py-3 flex items-center justify-center gap-2"
               >
                 <DocumentArrowDownIcon className="w-4 h-4" />
                 Download Resume
@@ -190,7 +190,7 @@ const Hero = () => {
                 onClick={() => scrollToSection('contact')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-secondary justify-center sm:justify-start"
+                className="btn-secondary w-48 text-sm whitespace-nowrap px-6 py-3 flex items-center justify-center gap-2"
               >
                 Get In Touch
               </motion.button>
@@ -207,18 +207,18 @@ const Hero = () => {
             <div className="relative">
               {/* Glowing background effect */}
               <motion.div
-                animate={{ 
+                animate={{
                   scale: [1, 1.05, 1],
                   rotate: [0, 1, 0]
                 }}
-                transition={{ 
-                  duration: 4, 
+                transition={{
+                  duration: 4,
                   repeat: Infinity,
-                  repeatType: "reverse" 
+                  repeatType: "reverse"
                 }}
                 className="absolute inset-0 bg-gradient-to-br from-accent-500/30 to-primary-500/30 rounded-2xl blur-xl"
               />
-              
+
               {/* Photo container */}
               <motion.div
                 whileHover={{ scale: 1.02 }}
@@ -229,7 +229,7 @@ const Hero = () => {
                   alt="Abdelrahman Hany"
                   className="w-full h-full object-cover object-center"
                 />
-                
+
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-950/20 via-transparent to-transparent" />
               </motion.div>
@@ -242,7 +242,7 @@ const Hero = () => {
               >
                 Automation
               </motion.div>
-              
+
               <motion.div
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 4, repeat: Infinity, delay: 1 }}
@@ -250,7 +250,7 @@ const Hero = () => {
               >
                 Software
               </motion.div>
-              
+
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, delay: 2 }}
