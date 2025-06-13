@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaCode, FaEye, FaRocket, FaLightbulb, FaTools, FaTrophy, FaAws, FaSlack, FaUpwork, FaShoppingCart, FaMapMarkerAlt, FaClock, FaJava,FaChartBar, FaShieldAlt, FaBrain, FaGlobe } from 'react-icons/fa';
-import { SiReact, SiPython, SiJavascript, SiNodedotjs, SiTailwindcss, SiCplusplus, SiVerilog, SiInstagram, SiAwslambda, SiMongodb, SiExpress, SiFirebase, SiAndroid, SiPostgresql, SiJupyter, SiC, SiNasa } from 'react-icons/si';
+import { FaGithub, FaExternalLinkAlt, FaCode, FaEye, FaRocket, FaLightbulb, FaTools, FaTrophy, FaAws, FaSlack, FaShoppingCart, FaMapMarkerAlt, FaClock, FaJava,FaChartBar, FaShieldAlt, FaBrain, FaGlobe } from 'react-icons/fa';
+import { SiUpwork,SiReact, SiPython, SiJavascript, SiNodedotjs, SiTailwindcss, SiCplusplus, SiVerilog, SiInstagram, SiAwslambda, SiMongodb, SiExpress, SiFirebase, SiAndroid, SiPostgresql, SiJupyter, SiC, SiNasa } from 'react-icons/si';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -312,7 +312,7 @@ const Projects = () => {
     { 
       key: 'professional', 
       label: 'Professional', 
-      icon: FaUpwork, 
+      icon: SiUpwork, 
       color: 'from-green-500 to-blue-500',
       count: projects.filter(p => p.category === 'professional').length 
     },
@@ -483,7 +483,7 @@ const Projects = () => {
           className="flex flex-wrap justify-center gap-4 mb-8"
         >
           <div className="flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full">
-            <FaUpwork className="text-green-400" />
+            <SiUpwork className="text-green-400" />
             <span className="text-green-300 text-sm font-medium">Active Upwork Freelancer</span>
           </div>
           <div className="flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-full">
@@ -650,7 +650,7 @@ const Projects = () => {
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                           >
-                            <FaUpwork />
+                            <SiUpwork />
                           </motion.a>
                         )}
                       </motion.div>
@@ -746,7 +746,7 @@ const Projects = () => {
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
-                            <FaUpwork className="text-xs" />
+                            <SiUpwork className="text-xs" />
                             Upwork
                           </motion.a>
                         )}
