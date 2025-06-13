@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+// Import real tech icons
+import { 
+  SiPython, SiJavascript, SiReact, SiNodedotjs, SiTypescript,
+  SiDocker, SiAmazonaws, SiRedis, SiJava, SiMongodb,
+  SiBootstrap, SiTailwindcss, SiGithubactions, SiFigma,
+  SiCplusplus, SiHtml5, SiCss3, SiMysql, SiLinux,
+  SiArduino, SiFastapi, SiGoogleappsscript, SiVisualstudiocode,
+  SiGit
+} from 'react-icons/si';
+import { FaCode, FaTools, FaMicrochip, FaPalette, FaEye, FaGrid3x3 } from 'react-icons/fa';
 
 const Skills = () => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const [viewMode, setViewMode] = useState('categories'); // 'categories', 'compact', 'detailed'
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -14,6 +25,15 @@ const Skills = () => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  // Reset view mode when filter changes
+  useEffect(() => {
+    if (activeFilter === 'all') {
+      setViewMode('categories');
+    } else {
+      setViewMode('detailed');
+    }
+  }, [activeFilter]);
 
   const skillCategories = {
     'daily-drivers': {
@@ -29,7 +49,8 @@ const Skills = () => {
           name: 'Python',
           context: 'Primary language for automation, backend development & web scraping',
           cluster: 'backend',
-          icon: '🐍',
+          icon: SiPython,
+          iconColor: '#3776AB',
           mastery: 'Expert',
           sparkles: true
         },
@@ -37,7 +58,8 @@ const Skills = () => {
           name: 'JavaScript',
           context: 'Core language for web development & automation interfaces',
           cluster: 'frontend',
-          icon: '⚡',
+          icon: SiJavascript,
+          iconColor: '#F7DF1E',
           mastery: 'Advanced',
           sparkles: true
         },
@@ -45,7 +67,8 @@ const Skills = () => {
           name: 'Google Apps Script',
           context: 'Automation & integration with Google Workspace',
           cluster: 'backend',
-          icon: '📊',
+          icon: SiGoogleappsscript,
+          iconColor: '#4285F4',
           mastery: 'Advanced',
           sparkles: true
         },
@@ -53,14 +76,16 @@ const Skills = () => {
           name: 'Git',
           context: 'Version control for all projects',
           cluster: 'tools',
-          icon: '🌿',
+          icon: SiGit,
+          iconColor: '#F05032',
           mastery: 'Advanced'
         },
         {
           name: 'VS Code',
           context: 'Primary development environment',
           cluster: 'tools',
-          icon: '💻',
+          icon: SiVisualstudiocode,
+          iconColor: '#007ACC',
           mastery: 'Expert'
         }
       ]
@@ -78,49 +103,56 @@ const Skills = () => {
           name: 'React',
           context: 'Building modern web interfaces when needed',
           cluster: 'frontend',
-          icon: '⚛️',
+          icon: SiReact,
+          iconColor: '#61DAFB',
           mastery: 'Solid'
         },
         {
           name: 'C/C++',
           context: 'Embedded systems & hardware programming',
           cluster: 'embedded',
-          icon: '⚙️',
+          icon: SiCplusplus,
+          iconColor: '#00599C',
           mastery: 'Solid'
         },
         {
           name: 'HTML/CSS',
           context: 'Web fundamentals & responsive design',
           cluster: 'frontend',
-          icon: '🎨',
+          icon: SiHtml5,
+          iconColor: '#E34F26',
           mastery: 'Strong'
         },
         {
           name: 'FastAPI',
           context: 'Python web framework for scalable APIs',
           cluster: 'backend',
-          icon: '🚀',
+          icon: SiFastapi,
+          iconColor: '#009688',
           mastery: 'Growing'
         },
         {
           name: 'SQL',
           context: 'Database design & query optimization',
           cluster: 'backend',
-          icon: '🗄️',
+          icon: SiMysql,
+          iconColor: '#4479A1',
           mastery: 'Solid'
         },
         {
           name: 'Linux',
           context: 'System administration & development',
           cluster: 'tools',
-          icon: '🐧',
+          icon: SiLinux,
+          iconColor: '#FCC624',
           mastery: 'Strong'
         },
         {
           name: 'Arduino & MCUs',
           context: 'Microcontroller programming & embedded prototyping',
           cluster: 'embedded',
-          icon: '🔌',
+          icon: SiArduino,
+          iconColor: '#00979D',
           mastery: 'Experienced'
         }
       ]
@@ -138,7 +170,8 @@ const Skills = () => {
           name: 'Node.js',
           context: 'Server-side JavaScript development',
           cluster: 'backend',
-          icon: '🟢',
+          icon: SiNodedotjs,
+          iconColor: '#339933',
           mastery: 'Learning',
           pulse: true
         },
@@ -146,7 +179,8 @@ const Skills = () => {
           name: 'TypeScript',
           context: 'Adding type safety to JavaScript projects',
           cluster: 'frontend',
-          icon: '📘',
+          icon: SiTypescript,
+          iconColor: '#3178C6',
           mastery: 'Learning',
           pulse: true
         },
@@ -154,7 +188,8 @@ const Skills = () => {
           name: 'Docker',
           context: 'Containerization & development environments',
           cluster: 'tools',
-          icon: '🐳',
+          icon: SiDocker,
+          iconColor: '#2496ED',
           mastery: 'Exploring',
           pulse: true
         },
@@ -162,7 +197,8 @@ const Skills = () => {
           name: 'AWS',
           context: 'Cloud infrastructure & deployment',
           cluster: 'tools',
-          icon: '☁️',
+          icon: SiAmazonaws,
+          iconColor: '#FF9900',
           mastery: 'Exploring',
           pulse: true
         },
@@ -170,14 +206,16 @@ const Skills = () => {
           name: 'Redis',
           context: 'Caching & session management',
           cluster: 'backend',
-          icon: '🔴',
+          icon: SiRedis,
+          iconColor: '#DC382D',
           mastery: 'Learning'
         },
         {
           name: 'Tailwind CSS',
           context: 'Modern utility-first CSS framework',
           cluster: 'frontend',
-          icon: '🎨',
+          icon: SiTailwindcss,
+          iconColor: '#06B6D4',
           mastery: 'Learning',
           pulse: true
         }
@@ -196,35 +234,40 @@ const Skills = () => {
           name: 'Java',
           context: 'Object-oriented programming & algorithms',
           cluster: 'backend',
-          icon: '☕',
+          icon: SiJava,
+          iconColor: '#ED8B00',
           mastery: 'Familiar'
         },
         {
           name: 'MongoDB',
           context: 'NoSQL database for flexible data storage',
           cluster: 'backend',
-          icon: '🍃',
+          icon: SiMongodb,
+          iconColor: '#47A248',
           mastery: 'Familiar'
         },
         {
           name: 'Bootstrap 5',
           context: 'Responsive CSS framework & component library',
           cluster: 'frontend',
-          icon: '🎨',
+          icon: SiBootstrap,
+          iconColor: '#7952B3',
           mastery: 'Comfortable'
         },
         {
           name: 'GitHub Actions',
           context: 'CI/CD automation & workflows',
           cluster: 'tools',
-          icon: '🚀',
+          icon: SiGithubactions,
+          iconColor: '#2088FF',
           mastery: 'Familiar'
         },
         {
           name: 'Figma',
           context: 'UI/UX design & prototyping',
           cluster: 'tools',
-          icon: '🎨',
+          icon: SiFigma,
+          iconColor: '#F24E1E',
           mastery: 'Comfortable'
         }
       ]
@@ -236,25 +279,25 @@ const Skills = () => {
       name: 'Frontend', 
       color: 'bg-blue-500/30 border-blue-400/50',
       gradient: 'from-blue-400 to-cyan-400',
-      icon: '🎨'
+      icon: FaPalette
     },
     backend: { 
       name: 'Backend', 
       color: 'bg-green-500/30 border-green-400/50',
       gradient: 'from-green-400 to-emerald-400',
-      icon: '🔧'
+      icon: FaCode
     },
     embedded: { 
       name: 'Embedded', 
       color: 'bg-orange-500/30 border-orange-400/50',
       gradient: 'from-orange-400 to-red-400',
-      icon: '⚡'
+      icon: FaMicrochip
     },
     tools: { 
       name: 'Tools', 
       color: 'bg-purple-500/30 border-purple-400/50',
       gradient: 'from-purple-400 to-pink-400',
-      icon: '⚙️'
+      icon: FaTools
     }
   };
 
@@ -271,6 +314,16 @@ const Skills = () => {
       return Object.entries(skillCategories);
     }
     return Object.entries(skillCategories).filter(([key]) => key === activeFilter);
+  };
+
+  const getAllSkills = () => {
+    return Object.entries(skillCategories).flatMap(([categoryKey, category]) =>
+      category.skills.map(skill => ({ ...skill, categoryKey, category }))
+    );
+  };
+
+  const getTotalSkillCount = () => {
+    return Object.values(skillCategories).reduce((total, cat) => total + cat.skills.length, 0);
   };
 
   const floatingVariants = {
@@ -312,6 +365,341 @@ const Skills = () => {
       }
     }
   };
+
+  const renderCategoryPreview = () => (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="space-y-8"
+    >
+      {/* View Toggle */}
+      <div className="flex justify-center gap-4 mb-8">
+        <motion.button
+          onClick={() => setViewMode('compact')}
+          className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-accent-500 to-primary-500 rounded-xl text-white font-medium hover:shadow-lg transition-all duration-300"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <FaGrid3x3 />
+          View All {getTotalSkillCount()} Skills
+        </motion.button>
+      </div>
+
+      {/* Category Cards */}
+      <div className="grid md:grid-cols-2 gap-8">
+        {Object.entries(skillCategories).map(([categoryKey, category], index) => (
+          <motion.div
+            key={categoryKey}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: index * 0.1 }}
+            className="group relative p-8 rounded-3xl glass-effect border-2 border-gray-700/50 cursor-pointer hover:border-accent-500/50 transition-all duration-500 overflow-hidden"
+            onClick={() => setActiveFilter(categoryKey)}
+            whileHover={{ scale: 1.02, y: -5 }}
+          >
+            {/* Background Gradient */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${category.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+            
+            {/* Content */}
+            <div className="relative z-10">
+              {/* Header */}
+              <div className="flex items-center gap-4 mb-6">
+                <motion.div
+                  className="text-5xl"
+                  whileHover={{ rotate: 360, scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {category.emoji}
+                </motion.div>
+                <div>
+                  <h3 className={`text-2xl font-bold bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
+                    {category.title}
+                  </h3>
+                  <p className="text-gray-400 font-medium">{category.subtitle}</p>
+                </div>
+              </div>
+
+              {/* Description */}
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                {category.description}
+              </p>
+
+              {/* Skills Preview */}
+              <div className="space-y-4">
+                <div className="flex flex-wrap gap-3">
+                  {category.skills.slice(0, 6).map((skill, skillIndex) => (
+                    <motion.div
+                      key={skill.name}
+                      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-800/50 border border-gray-600/50"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ delay: skillIndex * 0.05 }}
+                    >
+                      <div className="text-lg" style={{ color: skill.iconColor }}>
+                        <skill.icon />
+                      </div>
+                      <span className="text-white text-sm font-medium">{skill.name}</span>
+                    </motion.div>
+                  ))}
+                  {category.skills.length > 6 && (
+                    <div className="flex items-center px-3 py-2 rounded-lg bg-gray-700/50 border border-gray-600/50">
+                      <span className="text-gray-400 text-sm">+{category.skills.length - 6} more</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* CTA */}
+                <div className="flex items-center justify-between pt-4 border-t border-gray-700/50">
+                  <span className="text-gray-400 text-sm">
+                    {category.skills.length} technologies
+                  </span>
+                  <div className="flex items-center gap-2 text-accent-400 font-medium group-hover:text-accent-300 transition-colors">
+                    <span>Explore</span>
+                    <motion.span
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      →
+                    </motion.span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+
+  const renderCompactView = () => (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="space-y-8"
+    >
+      {/* Back Button */}
+      <div className="flex justify-center">
+        <motion.button
+          onClick={() => setViewMode('categories')}
+          className="flex items-center gap-3 px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl text-white font-medium transition-all duration-300"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          ← Back to Categories
+        </motion.button>
+      </div>
+
+      {/* Compact Skills Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {getAllSkills().map((skill, index) => (
+          <motion.div
+            key={skill.name}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: index * 0.05 }}
+            className="group relative p-4 rounded-xl glass-effect border transition-all duration-300 hover:scale-105 hover:border-accent-500/50 cursor-pointer"
+            onClick={() => setActiveFilter(skill.categoryKey)}
+            onHoverStart={() => setHoveredSkill(skill.name)}
+            onHoverEnd={() => setHoveredSkill(null)}
+            variants={skill.pulse ? pulseVariants : {}}
+            animate={skill.pulse ? "animate" : ""}
+          >
+            {/* Sparkle Effect */}
+            {skill.sparkles && (
+              <motion.div
+                className="absolute top-1 right-1 text-yellow-400 text-xs"
+                variants={sparkleVariants}
+                animate="animate"
+              >
+                ✨
+              </motion.div>
+            )}
+
+            <div className="text-center">
+              <motion.div 
+                className="text-2xl mb-2 mx-auto w-fit" 
+                style={{ color: skill.iconColor }}
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <skill.icon />
+              </motion.div>
+              <h4 className="text-xs font-medium text-white mb-1 leading-tight">{skill.name}</h4>
+              <span className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${skill.category.color} text-white inline-block`}>
+                {skill.mastery}
+              </span>
+            </div>
+
+            {/* Tooltip */}
+            {hoveredSkill === skill.name && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg shadow-xl border border-gray-700 whitespace-nowrap z-50"
+              >
+                {skill.context}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
+              </motion.div>
+            )}
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Stats */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="text-center p-6 rounded-xl bg-gradient-to-r from-accent-500/10 to-primary-500/10 border border-accent-500/20"
+      >
+        <p className="text-gray-300 text-lg">
+          <span className="text-accent-400 font-bold">{getTotalSkillCount()}</span> technologies across{' '}
+          <span className="text-primary-400 font-bold">{Object.keys(skillCategories).length}</span> categories
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+
+  const renderDetailedView = () => (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={activeFilter}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.4 }}
+        className="space-y-20"
+      >
+        {getFilteredCategories().map(([categoryKey, category], categoryIndex) => (
+          <motion.div
+            key={categoryKey}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: categoryIndex * 0.2 }}
+            className="relative"
+          >
+            {/* Category Header */}
+            <motion.div 
+              className="text-center mb-12 relative"
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className={`absolute inset-0 bg-gradient-to-r ${category.bgGradient} blur-3xl opacity-30 rounded-full`} />
+              
+              <div className="relative z-10">
+                <motion.div
+                  className="inline-flex items-center gap-4 mb-4"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <motion.span 
+                    className="text-5xl"
+                    variants={sparkleVariants}
+                    animate="animate"
+                  >
+                    {category.emoji}
+                  </motion.span>
+                  <div className="text-left">
+                    <h3 className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
+                      {category.title}
+                    </h3>
+                    <p className="text-gray-400 text-lg font-medium">{category.subtitle}</p>
+                  </div>
+                </motion.div>
+                <p className="text-gray-300 text-lg max-w-2xl mx-auto">{category.description}</p>
+              </div>
+            </motion.div>
+
+            {/* Skills Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {category.skills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
+                  whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    delay: index * 0.1, 
+                    type: "spring", 
+                    stiffness: 200,
+                    damping: 20
+                  }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -10, 
+                    rotateX: 5,
+                    transition: { duration: 0.2 }
+                  }}
+                  onHoverStart={() => setHoveredSkill(skill.name)}
+                  onHoverEnd={() => setHoveredSkill(null)}
+                  className="group relative"
+                  variants={skill.pulse ? pulseVariants : {}}
+                  animate={skill.pulse ? "animate" : ""}
+                >
+                  <div className={`relative p-8 rounded-3xl glass-effect border-2 transition-all duration-500 overflow-hidden ${clusters[skill.cluster].color}`}>
+                    <div className={`absolute inset-0 bg-gradient-to-br ${category.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                    
+                    {skill.sparkles && (
+                      <motion.div
+                        className="absolute top-4 right-4 text-yellow-400"
+                        variants={sparkleVariants}
+                        animate="animate"
+                      >
+                        ✨
+                      </motion.div>
+                    )}
+
+                    <div className="relative z-10">
+                      <div className="flex items-start gap-4 mb-6">
+                        <motion.div 
+                          className="text-4xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
+                          whileHover={{ rotate: [0, -10, 10, 0] }}
+                          transition={{ duration: 0.3 }}
+                          style={{ color: skill.iconColor }}
+                        >
+                          <skill.icon />
+                        </motion.div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <h4 className="text-xl font-bold text-white group-hover:text-accent-100 transition-colors">
+                              {skill.name}
+                            </h4>
+                            <motion.span 
+                              className={`text-xs px-3 py-1 rounded-full font-medium ${clusters[skill.cluster].color} backdrop-blur-sm flex items-center gap-1`}
+                              whileHover={{ scale: 1.1 }}
+                            >
+                              <clusters[skill.cluster].icon className="text-xs" />
+                              {clusters[skill.cluster].name}
+                            </motion.span>
+                          </div>
+                          <motion.div
+                            className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${category.color} text-white font-bold inline-block`}
+                            whileHover={{ scale: 1.05 }}
+                          >
+                            {skill.mastery}
+                          </motion.div>
+                        </div>
+                      </div>
+
+                      <p className="text-gray-300 group-hover:text-gray-100 text-sm leading-relaxed transition-colors">
+                        {skill.context}
+                      </p>
+
+                      <motion.div
+                        className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${category.color} origin-left`}
+                        initial={{ scaleX: 0 }}
+                        whileHover={{ scaleX: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+    </AnimatePresence>
+  );
 
   return (
     <section id="skills" className="py-20 relative overflow-hidden">
@@ -370,207 +758,65 @@ const Skills = () => {
           </p>
         </motion.div>
 
-        {/* Ultra-Slick Filter Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-4 mb-16"
-        >
-          {filters.map((filter, index) => (
-            <motion.button
-              key={filter.key}
-              onClick={() => setActiveFilter(filter.key)}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className={`group relative px-8 py-4 rounded-2xl font-bold text-sm uppercase tracking-wider transition-all duration-300 overflow-hidden ${
-                activeFilter === filter.key
-                  ? 'text-white shadow-2xl shadow-accent-500/25'
-                  : 'text-gray-300 hover:text-white'
-              }`}
-            >
-              {/* Dynamic Background */}
-              <div className={`absolute inset-0 bg-gradient-to-r ${
-                activeFilter === filter.key ? filter.color : 'from-gray-800 to-gray-700'
-              } transition-all duration-300 ${
-                activeFilter !== filter.key ? 'opacity-50 group-hover:opacity-100' : ''
-              }`} />
-              
-              {/* Animated Border */}
-              <div className="absolute inset-0 rounded-2xl p-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
-              {/* Content */}
-              <div className="relative flex items-center gap-3">
-                <motion.span 
-                  className="text-lg"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {filter.icon}
-                </motion.span>
-                {filter.label}
-              </div>
-
-              {/* Active Indicator */}
-              {activeFilter === filter.key && (
-                <motion.div
-                  layoutId="activeFilter"
-                  className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full"
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                />
-              )}
-            </motion.button>
-          ))}
-        </motion.div>
-
-        {/* Epic Skills Categories */}
-        <AnimatePresence mode="wait">
+        {/* Filter Buttons - Only show when not in category preview mode */}
+        {(activeFilter !== 'all' || viewMode !== 'categories') && (
           <motion.div
-            key={activeFilter}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="space-y-20"
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-wrap justify-center gap-4 mb-16"
           >
-            {getFilteredCategories().map(([categoryKey, category], categoryIndex) => (
-              <motion.div
-                key={categoryKey}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: categoryIndex * 0.2 }}
-                className="relative"
+            {filters.map((filter, index) => (
+              <motion.button
+                key={filter.key}
+                onClick={() => setActiveFilter(filter.key)}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className={`group relative px-8 py-4 rounded-2xl font-bold text-sm uppercase tracking-wider transition-all duration-300 overflow-hidden ${
+                  activeFilter === filter.key
+                    ? 'text-white shadow-2xl shadow-accent-500/25'
+                    : 'text-gray-300 hover:text-white'
+                }`}
               >
-                {/* Category Header - Ultra Stylish */}
-                <motion.div 
-                  className="text-center mb-12 relative"
-                  whileHover={{ scale: 1.02 }}
-                >
-                  {/* Background Glow */}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${category.bgGradient} blur-3xl opacity-30 rounded-full`} />
-                  
-                  <div className="relative z-10">
-                    <motion.div
-                      className="inline-flex items-center gap-4 mb-4"
-                      whileHover={{ y: -5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <motion.span 
-                        className="text-5xl"
-                        variants={sparkleVariants}
-                        animate="animate"
-                      >
-                        {category.emoji}
-                      </motion.span>
-                      <div className="text-left">
-                        <h3 className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
-                          {category.title}
-                        </h3>
-                        <p className="text-gray-400 text-lg font-medium">{category.subtitle}</p>
-                      </div>
-                    </motion.div>
-                    <p className="text-gray-300 text-lg max-w-2xl mx-auto">{category.description}</p>
-                  </div>
-                </motion.div>
-
-                {/* Skills Grid - Maximum Slick */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {category.skills.map((skill, index) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
-                      whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ 
-                        delay: index * 0.1, 
-                        type: "spring", 
-                        stiffness: 200,
-                        damping: 20
-                      }}
-                      whileHover={{ 
-                        scale: 1.05, 
-                        y: -10, 
-                        rotateX: 5,
-                        transition: { duration: 0.2 }
-                      }}
-                      onHoverStart={() => setHoveredSkill(skill.name)}
-                      onHoverEnd={() => setHoveredSkill(null)}
-                      className="group relative"
-                      variants={skill.pulse ? pulseVariants : {}}
-                      animate={skill.pulse ? "animate" : ""}
-                    >
-                      {/* Card */}
-                      <div className={`relative p-8 rounded-3xl glass-effect border-2 transition-all duration-500 overflow-hidden ${clusters[skill.cluster].color}`}>
-                        {/* Dynamic Background Gradient */}
-                        <div className={`absolute inset-0 bg-gradient-to-br ${category.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                        
-                        {/* Sparkle Effect for Expert Skills */}
-                        {skill.sparkles && (
-                          <motion.div
-                            className="absolute top-4 right-4 text-yellow-400"
-                            variants={sparkleVariants}
-                            animate="animate"
-                          >
-                            ✨
-                          </motion.div>
-                        )}
-
-                        {/* Content */}
-                        <div className="relative z-10">
-                          {/* Header */}
-                          <div className="flex items-start gap-4 mb-6">
-                            <motion.div 
-                              className="text-4xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
-                              whileHover={{ rotate: [0, -10, 10, 0] }}
-                              transition={{ duration: 0.3 }}
-                            >
-                              {skill.icon}
-                            </motion.div>
-                            <div className="flex-1">
-                              <div className="flex items-center gap-3 mb-2">
-                                <h4 className="text-xl font-bold text-white group-hover:text-accent-100 transition-colors">
-                                  {skill.name}
-                                </h4>
-                                <motion.span 
-                                  className={`text-xs px-3 py-1 rounded-full font-medium ${clusters[skill.cluster].color} backdrop-blur-sm`}
-                                  whileHover={{ scale: 1.1 }}
-                                >
-                                  {clusters[skill.cluster].icon} {clusters[skill.cluster].name}
-                                </motion.span>
-                              </div>
-                              <motion.div
-                                className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${category.color} text-white font-bold inline-block`}
-                                whileHover={{ scale: 1.05 }}
-                              >
-                                {skill.mastery}
-                              </motion.div>
-                            </div>
-                          </div>
-
-                          {/* Description */}
-                          <p className="text-gray-300 group-hover:text-gray-100 text-sm leading-relaxed transition-colors">
-                            {skill.context}
-                          </p>
-
-                          {/* Hover Effect Line */}
-                          <motion.div
-                            className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${category.color} origin-left`}
-                            initial={{ scaleX: 0 }}
-                            whileHover={{ scaleX: 1 }}
-                            transition={{ duration: 0.3 }}
-                          />
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
+                <div className={`absolute inset-0 bg-gradient-to-r ${
+                  activeFilter === filter.key ? filter.color : 'from-gray-800 to-gray-700'
+                } transition-all duration-300 ${
+                  activeFilter !== filter.key ? 'opacity-50 group-hover:opacity-100' : ''
+                }`} />
+                
+                <div className="absolute inset-0 rounded-2xl p-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                <div className="relative flex items-center gap-3">
+                  <motion.span 
+                    className="text-lg"
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {filter.icon}
+                  </motion.span>
+                  {filter.label}
                 </div>
-              </motion.div>
+
+                {activeFilter === filter.key && (
+                  <motion.div
+                    layoutId="activeFilter"
+                    className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full"
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
+                )}
+              </motion.button>
             ))}
           </motion.div>
+        )}
+
+        {/* Dynamic Content */}
+        <AnimatePresence mode="wait">
+          {activeFilter === 'all' && viewMode === 'categories' && renderCategoryPreview()}
+          {activeFilter === 'all' && viewMode === 'compact' && renderCompactView()}
+          {activeFilter !== 'all' && renderDetailedView()}
         </AnimatePresence>
 
         {/* Epic Bottom CTA */}
@@ -585,9 +831,6 @@ const Skills = () => {
             whileHover={{ scale: 1.02, y: -5 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            {/* Animated Border */}
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-accent-500/50 via-primary-500/50 to-green-500/50 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
             <div className="relative z-10">
               <motion.div
                 className="text-4xl mb-4"
