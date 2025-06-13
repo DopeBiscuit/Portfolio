@@ -1,24 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDownIcon, DocumentArrowDownIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 const Hero = () => {
   const [typedText, setTypedText] = useState('');
-  const fullText = 'Computer & Systems Engineer';
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const texts = [
+    'Computer & Systems Engineer',
+    'Full-Stack Developer',
+    'Automation Specialist',
+    'Problem Solver'
+  ];
 
   useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index < fullText.length) {
-        setTypedText(fullText.slice(0, index + 1));
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 100);
+    const typeSpeed = isDeleting ? 50 : 100;
+    const pauseTime = isDeleting ? 500 : 2000;
 
-    return () => clearInterval(timer);
-  }, []);
+    const handleTyping = () => {
+      const currentText = texts[currentIndex];
+      
+      if (isDeleting) {
+        setTypedText(currentText.substring(0, typedText.length - 1));
+      } else {
+        setTypedText(currentText.substring(0, typedText.length + 1));
+      }
+
+      if (!isDeleting && typedText === currentText) {
+        setTimeout(() => setIsDeleting(true), pauseTime);
+      } else if (isDeleting && typedText === '') {
+        setIsDeleting(false);
+        setCurrentIndex((prev) => (prev + 1) % texts.length);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typeSpeed);
+    return () => clearTimeout(timer);
+  }, [typedText, isDeleting, currentIndex, texts]);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -41,46 +67,23 @@ const Hero = () => {
   };
 
   const imageVariants = {
-    hidden: { x: 100, opacity: 0 },
+    hidden: { scale: 0.8, opacity: 0 },
     visible: {
-      x: 0,
+      scale: 1,
       opacity: 1,
       transition: { duration: 0.8, ease: "easeOut" }
     }
   };
 
-  const handleResumeDownload = () => {
-    // Create a download link for the resume
-    const link = document.createElement('a');
-    link.href = '/abdelrahman_resume.pdf';
-    link.download = 'Abdelrahman_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const scrollToSection = (sectionId) => {
-    console.log('Button clicked, scrolling to:', sectionId); // Debug log
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    } else {
-      console.log('Element not found:', sectionId); // Debug log
-    }
-  };
-
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 md:pt-0">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Floating elements - repositioned for left layout */}
-        {[...Array(5)].map((_, i) => (
+        {/* Floating elements - optimized for mobile */}
+        {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-4 h-4 bg-accent-500/20 rounded-full"
+            className="absolute w-3 h-3 bg-accent-500/20 rounded-full sm:w-4 sm:h-4"
             animate={{
               x: [0, 100, 0],
               y: [0, -100, 0],
@@ -92,27 +95,27 @@ const Hero = () => {
               repeatType: "reverse",
             }}
             style={{
-              left: `${10 + i * 20}%`,
-              top: `${20 + i * 15}%`,
+              left: `${10 + i * 30}%`,
+              top: `${20 + i * 20}%`,
             }}
           />
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container-responsive w-full">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Side - Text Content */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="space-y-8"
+            className="space-y-6 text-center lg:text-left lg:space-y-8"
           >
             {/* Main heading */}
             <motion.div variants={itemVariants}>
-              <motion.h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
+              <motion.h1 className="text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl">
                 <span className="block gradient-text">Abdelrahman</span>
-                <span className="block text-gray-300 text-2xl md:text-3xl lg:text-4xl font-light mt-2">
+                <span className="block text-gray-300 text-xl font-light mt-2 sm:text-2xl md:text-3xl lg:text-4xl">
                   Hany
                 </span>
               </motion.h1>
@@ -121,7 +124,7 @@ const Hero = () => {
             {/* Typing animation subtitle */}
             <motion.div
               variants={itemVariants}
-              className="text-lg md:text-xl text-gray-400 h-8"
+              className="text-base md:text-lg lg:text-xl text-gray-400 h-6 md:h-8"
             >
               <span className="font-mono">
                 {typedText}
@@ -132,7 +135,7 @@ const Hero = () => {
             {/* Description */}
             <motion.p
               variants={itemVariants}
-              className="text-base md:text-lg text-gray-300 leading-relaxed max-w-xl"
+              className="text-sm md:text-base lg:text-lg text-gray-300 leading-relaxed max-w-xl mx-auto lg:mx-0"
             >
               Transitioning from embedded systems to full-stack development,
               building scalable solutions with a focus on backend architecture
@@ -142,61 +145,55 @@ const Hero = () => {
             {/* Quick Stats */}
             <motion.div
               variants={itemVariants}
-              className="grid grid-cols-4 gap-4 max-w-lg"
+              className="grid grid-cols-4 gap-3 max-w-sm mx-auto lg:mx-0 lg:max-w-lg lg:gap-4"
             >
               <div className="text-center">
-                <div className="text-xl md:text-2xl font-bold gradient-text">100+</div>
+                <div className="text-lg font-bold gradient-text sm:text-xl md:text-2xl">100+</div>
                 <div className="text-xs text-gray-500">Projects</div>
               </div>
               <div className="text-center">
-                <div className="text-xl md:text-2xl font-bold gradient-text">3+</div>
+                <div className="text-lg font-bold gradient-text sm:text-xl md:text-2xl">3+</div>
                 <div className="text-xs text-gray-500">Years</div>
               </div>
               <div className="text-center">
-                <div className="text-xl md:text-2xl font-bold gradient-text">3.5</div>
+                <div className="text-lg font-bold gradient-text sm:text-xl md:text-2xl">3.5</div>
                 <div className="text-xs text-gray-500">GPA</div>
               </div>
               <div className="text-center">
-                <div className="text-xl md:text-2xl font-bold gradient-text">Pro</div>
+                <div className="text-lg font-bold gradient-text sm:text-xl md:text-2xl">Pro</div>
                 <div className="text-xs text-gray-500">Fiverr</div>
               </div>
             </motion.div>
 
-            {/* CTA Buttons - Fixed with z-index */}
+            {/* CTA Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 relative z-[60]"
+              className="flex flex-col gap-4 relative z-[60] sm:flex-row sm:justify-center lg:justify-start"
             >
               <motion.button
                 onClick={() => scrollToSection('projects')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary w-48 text-sm whitespace-nowrap px-6 py-3 flex items-center justify-center gap-2 relative z-[60]"
+                className="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 Explore My Work
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </motion.button>
-
-              <motion.button
-                onClick={handleResumeDownload}
+              
+              <motion.a
+                href="/abdelrahman_resume.pdf"
+                download
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-secondary w-48 text-sm whitespace-nowrap px-6 py-3 flex items-center justify-center gap-2 relative z-[60]"
+                className="btn-secondary flex items-center justify-center gap-2 w-full sm:w-auto"
               >
-                <DocumentArrowDownIcon className="w-4 h-4" />
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
                 Download Resume
-              </motion.button>
-
-              <motion.button
-                onClick={() => scrollToSection('contact')}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}  
-                className="btn-secondary w-48 text-sm whitespace-nowrap px-6 py-3 flex items-center justify-center gap-2 relative z-[60]"
-              >
-                Get In Touch
-              </motion.button>
+              </motion.a>
             </motion.div>
           </motion.div>
 
@@ -205,7 +202,7 @@ const Hero = () => {
             variants={imageVariants}
             initial="hidden"
             animate="visible"
-            className="relative flex justify-center lg:justify-end"
+            className="relative flex justify-center lg:justify-end order-first lg:order-last"
           >
             <div className="relative">
               {/* Glowing background effect */}
@@ -225,41 +222,13 @@ const Hero = () => {
               {/* Photo container */}
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="relative w-72 h-96 md:w-80 md:h-[26rem] rounded-2xl overflow-hidden glass-effect border-2 border-accent-500/30"
+                className="relative w-64 h-80 rounded-2xl overflow-hidden glass-effect border-2 border-accent-500/30 sm:w-72 sm:h-96 md:w-80 md:h-[26rem]"
               >
                 <img
                   src="/images/profile.png"
                   alt="Abdelrahman Hany"
                   className="w-full h-full object-cover object-center"
                 />
-
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-950/20 via-transparent to-transparent" />
-              </motion.div>
-
-              {/* Floating tech badges around photo */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -top-6 -left-6 px-3 py-1 bg-accent-600 text-white text-sm rounded-full font-medium"
-              >
-                Automation
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-                className="absolute top-20 -right-8 px-3 py-1 bg-primary-600 text-white text-sm rounded-full font-medium"
-              >
-                Software
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, delay: 2 }}
-                className="absolute -bottom-4 -left-8 px-3 py-1 bg-green-600 text-white text-sm rounded-full font-medium"
-              >
-                Embedded
               </motion.div>
             </div>
           </motion.div>
@@ -270,15 +239,16 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
         >
-          <span className="text-sm text-gray-500 mb-2">Scroll to explore</span>
-          <motion.div
+          <motion.button
+            onClick={() => scrollToSection('about')}
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
+            className="text-gray-400 hover:text-accent-400 transition-colors p-2"
           >
-            <ChevronDownIcon className="w-6 h-6 text-accent-500" />
-          </motion.div>
+            <ChevronDownIcon className="w-6 h-6" />
+          </motion.button>
         </motion.div>
       </div>
     </section>
