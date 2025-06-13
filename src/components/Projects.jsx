@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaCode, FaEye, FaRocket, FaLightbulb, FaTools, FaTrophy, FaAws, FaSlack, FaUpwork, FaShoppingCart, FaMapMarkerAlt, FaClock, FaJava, FaChartBar, FaShieldAlt, FaBrain, FaGlobe, FaEnvelope, FaRobot } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaCode, FaEye, FaRocket, FaLightbulb, FaTools, FaTrophy, FaAws, FaSlack, FaShoppingCart, FaMapMarkerAlt, FaClock, FaJava, FaChartBar, FaShieldAlt, FaBrain, FaGlobe, FaEnvelope, FaRobot } from 'react-icons/fa';
 import { SiReact, SiPython, SiJavascript, SiNodedotjs, SiTailwindcss, SiCplusplus, SiVerilog, SiInstagram, SiAwslambda, SiMongodb, SiExpress, SiFirebase, SiAndroid, SiPostgresql, SiJupyter, SiC, SiNasa, SiOpenai, SiFiverr } from 'react-icons/si';
+import { FaUpwork } from "react-icons/fa6";
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
