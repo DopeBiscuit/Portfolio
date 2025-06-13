@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-// Import real tech icons
+// Import real tech icons - CORRECTED NAMES
 import { 
   SiPython, SiJavascript, SiReact, SiNodedotjs, SiTypescript,
   SiDocker, SiAmazonaws, SiRedis, SiJava, SiMongodb,
   SiBootstrap, SiTailwindcss, SiGithubactions, SiFigma,
   SiCplusplus, SiHtml5, SiCss3, SiMysql, SiLinux,
-  SiArduino, SiFastapi, SiGoogleappsscript, SiVisualstudiocode,
+  SiArduino, SiFastapi, SiGoogleappscript, SiVisualstudio,
   SiGit
 } from 'react-icons/si';
 import { FaCode, FaTools, FaMicrochip, FaPalette, FaGrid3x3 } from 'react-icons/fa';
@@ -70,13 +70,13 @@ const Skills = () => {
           sparkles: true
         },
         {
-          name: 'Google Apps Script',
-          context: 'Automation & integration with Google Workspace',
-          cluster: 'backend',
-          icon: SiGoogleappsscript,
-          iconColor: '#4285F4',
-          mastery: 'Advanced',
-          sparkles: true
+            name: 'Google Apps Script',
+            context: 'Automation & integration with Google Workspace',
+            cluster: 'backend',
+            icon: SiGoogleappscript,
+            iconColor: '#4285F4',
+            mastery: 'Advanced',
+            sparkles: true
         },
         {
           name: 'Git',
@@ -90,7 +90,7 @@ const Skills = () => {
           name: 'VS Code',
           context: 'Primary development environment',
           cluster: 'tools',
-          icon: SiVisualstudiocode,
+          icon: SiVisualstudio,
           iconColor: '#007ACC',
           mastery: 'Expert'
         }
