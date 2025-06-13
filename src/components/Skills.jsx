@@ -837,50 +837,7 @@ const Skills = () => {
           {activeFilter !== 'all' && renderDetailedView()}
         </AnimatePresence>
 
-        {/* Epic Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-20"
-        >
-          <motion.div
-            className="relative inline-block p-8 rounded-3xl bg-gradient-to-br from-accent-500/20 via-primary-500/20 to-green-500/20 border-2 border-accent-500/30 backdrop-blur-sm"
-            whileHover={{ scale: 1.02, y: -5 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <div className="relative z-10">
-              <motion.div
-                className="text-4xl mb-4"
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                🚀
-              </motion.div>
-              <h3 className="text-2xl font-bold text-white mb-3">
-                Ready to <span className="bg-gradient-to-r from-accent-400 to-primary-400 bg-clip-text text-transparent">collaborate</span>?
-              </h3>
-              <p className="text-gray-300 text-lg mb-6 max-w-2xl">
-                <span className="text-accent-400 font-medium">Continuous learner</span>, 
-                Always exploring new technologies and pushing boundaries
-              </p>
-              <motion.a
-                href="#contact"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent-500 to-primary-500 rounded-2xl text-white font-bold text-lg hover:shadow-2xl hover:shadow-accent-500/25 transition-all duration-300"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Let's Build Something Amazing
-                <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  →
-                </motion.span>
-              </motion.a>
-            </div>
-          </motion.div>
-        </motion.div>
+
       </div>
     </section>
   );
