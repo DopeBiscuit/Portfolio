@@ -28,19 +28,19 @@ const About = () => {
       icon: <CpuChipIcon className="w-6 h-6" />,
       title: "Embedded Beginnings",
       description: "Started with microcontrollers and hardware programming",
-      year: "2020"
+      year: "2022"
     },
     {
       icon: <CodeBracketIcon className="w-6 h-6" />,
       title: "Software Transition",
       description: "Discovered the power of full-stack development",
-      year: "2022"
+      year: "2024"
     },
     {
       icon: <RocketLaunchIcon className="w-6 h-6" />,
       title: "Scaling Solutions",
       description: "Building distributed systems and scalable architectures",
-      year: "2024"
+      year: "2025"
     }
   ];
 
@@ -86,7 +86,7 @@ const About = () => {
                   an unexpected turn when I discovered the limitless potential of software development.
                 </p>
                 <p className="text-gray-300 leading-relaxed">
-                  Today, I bridge both worlds — bringing the <em className="text-primary-400">precision of hardware thinking</em> 
+                  Today, I bridge both worlds — bringing the <em className="text-primary-400">precision of hardware thinking </em> 
                   to scalable software solutions.
                 </p>
               </div>
@@ -177,8 +177,8 @@ const About = () => {
                 🚀 What's Next?
               </h4>
               <p className="text-gray-300 leading-relaxed">
-                Building the next generation of <span className="text-accent-400 font-medium">distributed systems</span> 
-                and exploring cutting-edge technologies like <span className="text-primary-400 font-medium">AI integration</span> 
+                Building the next generation of <span className="text-accent-400 font-medium">distributed systems </span> 
+                and exploring cutting-edge technologies like <span className="text-primary-400 font-medium">AI integration </span> 
                 and <span className="text-green-400 font-medium">cloud architecture</span>.
               </p>
             </motion.div>
