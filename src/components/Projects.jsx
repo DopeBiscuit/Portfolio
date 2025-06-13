@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaCode, FaEye, FaRocket, FaLightbulb, FaTools, FaTrophy, FaAws, FaSlack, FaShoppingCart, FaMapMarkerAlt, FaClock, FaJava,FaChartBar, FaShieldAlt, FaBrain, FaGlobe } from 'react-icons/fa';
-import { SiUpwork,SiReact, SiPython, SiJavascript, SiNodedotjs, SiTailwindcss, SiCplusplus, SiVerilog, SiInstagram, SiAwslambda, SiMongodb, SiExpress, SiFirebase, SiAndroid, SiPostgresql, SiJupyter, SiC, SiNasa } from 'react-icons/si';
+import { FaGithub, FaExternalLinkAlt, FaCode, FaEye, FaRocket, FaLightbulb, FaTools, FaTrophy, FaAws, FaSlack, FaUpwork, FaShoppingCart, FaMapMarkerAlt, FaClock, FaChartBar, FaShieldAlt, FaBrain, FaGlobe, FaEnvelope, FaRobot } from 'react-icons/fa';
+import { SiReact, SiPython, SiJavascript, SiNodedotjs, SiTailwindcss, SiCplusplus, SiVerilog, SiInstagram, SiAwslambda, SiMongodb, SiExpress, SiFirebase, SiAndroid, SiJava, SiPostgresql, SiJupyter, SiC, SiNasa, SiOpenai, SiFiverr } from 'react-icons/si';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [hoveredProject, setHoveredProject] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   // Track mouse for floating effects
   useEffect(() => {
@@ -20,13 +21,51 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: "Gmail Customer Data Bot",
+      subtitle: "Upwork • OpenAI • Database Automation",
+      description: "An intelligent bot that automatically fetches and processes emails containing customer information for car rentals. Uses OpenAI API for email categorization and extracts data to update client database, eliminating manual work and saving precious time.",
+      category: "professional",
+      type: "Automation",
+      status: "Production",
+      mastery: "Professional Work",
+      featured: true,
+      technologies: [
+        { name: "Python", icon: SiPython, color: "#3776AB" },
+        { name: "OpenAI API", icon: SiOpenai, color: "#00A67E" },
+        { name: "Gmail API", icon: FaEnvelope, color: "#EA4335" },
+        { name: "Database", icon: FaTools, color: "#336791" }
+      ],
+      features: [
+        "Automated email fetching",
+        "OpenAI categorization",
+        "Data extraction & processing",
+        "Database integration",
+        "Zero manual intervention"
+      ],
+      image: "https://via.placeholder.com/400x250/00A67E/white?text=Gmail+Bot",
+      github: null,
+      demo: "https://www.upwork.com/freelancers/~01e92e0c8b7675915f?p=1922432943075143680",
+      upwork: true,
+      color: "from-green-500 to-blue-500",
+      bgGradient: "from-green-500/20 to-blue-500/20",
+      learnings: [
+        "Gmail API integration",
+        "OpenAI API implementation",
+        "Email processing automation",
+        "Database management",
+        "Client workflow optimization"
+      ]
+    },
+    {
+      id: 2,
       title: "Airbnb Data Scraper & Slack Bot",
-      subtitle: "AWS Lambda • Python • Professional Client Work",
+      subtitle: "AWS Lambda • Python • Fiverr Client Work",
       description: "A professional Python scraping bot that gathers data from Airbnb properties, processes the information, and sends structured reports to Slack channels. Deployed on AWS Lambda for scheduled execution with error handling and monitoring.",
       category: "professional",
       type: "Automation",
       status: "Production",
       mastery: "Professional Work",
+      featured: true,
       technologies: [
         { name: "Python", icon: SiPython, color: "#3776AB" },
         { name: "AWS Lambda", icon: SiAwslambda, color: "#FF9900" },
@@ -42,8 +81,8 @@ const Projects = () => {
       ],
       image: "https://via.placeholder.com/400x250/FF9900/white?text=Airbnb+Scraper",
       github: null,
-      demo: null,
-      upwork: true,
+      demo: "https://www.fiverr.com/dopebiscuit",
+      fiverr: true,
       color: "from-orange-500 to-red-500",
       bgGradient: "from-orange-500/20 to-red-500/20",
       learnings: [
@@ -55,7 +94,7 @@ const Projects = () => {
       ]
     },
     {
-      id: 2,
+      id: 3,
       title: "CartNest - E-commerce Platform",
       subtitle: "Full Stack • JavaScript, Python, PostgreSQL",
       description: "A comprehensive e-commerce platform with shopping cart functionality, user authentication, payment processing, and admin dashboard. Built with modern web technologies and PostgreSQL database for scalable online shopping experience.",
@@ -63,6 +102,7 @@ const Projects = () => {
       type: "Web App",
       status: "Completed",
       mastery: "Team Project",
+      featured: true,
       technologies: [
         { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
         { name: "Python", icon: SiPython, color: "#3776AB" },
@@ -90,7 +130,7 @@ const Projects = () => {
       ]
     },
     {
-      id: 3,
+      id: 4,
       title: "CHRONOS - CPU Scheduling Visualizer",
       subtitle: "Python Desktop App • Algorithm Visualization",
       description: "A sophisticated desktop application that visualizes CPU scheduling algorithms with interactive Gantt charts. Supports FCFS, SJF, Priority Scheduling, and Round Robin with real-time statistics and dynamic process management.",
@@ -98,6 +138,7 @@ const Projects = () => {
       type: "Desktop App",
       status: "Completed",
       mastery: "Senior Project",
+      featured: true,
       technologies: [
         { name: "Python", icon: SiPython, color: "#3776AB" },
         { name: "GUI Framework", icon: FaTools, color: "#8B5CF6" },
@@ -125,7 +166,7 @@ const Projects = () => {
       ]
     },
     {
-      id: 4,
+      id: 5,
       title: "Climate Change App - NASA Space Apps 2024",
       subtitle: "Python • Machine Learning • NASA Challenge",
       description: "A Python-based application developed for NASA Space Apps 2024 Challenge focusing on climate change analysis. Utilizes Arrow, STAC, RASTER data processing, and LLM integration for environmental data insights.",
@@ -133,6 +174,7 @@ const Projects = () => {
       type: "Data Science",
       status: "Competition Entry",
       mastery: "Challenge Project",
+      featured: true,
       technologies: [
         { name: "Python", icon: SiPython, color: "#3776AB" },
         { name: "Jupyter", icon: SiJupyter, color: "#F37626" },
@@ -160,7 +202,44 @@ const Projects = () => {
       ]
     },
     {
-      id: 5,
+      id: 6,
+      title: "Fraud Detection System",
+      subtitle: "Python • Machine Learning • High Performance",
+      description: "A Python implementation of Chung & Lee's 2023 fraud detection ensemble approach. Optimized for high recall (≥0.93) on the PaySim dataset with advanced machine learning techniques and performance optimization.",
+      category: "ml",
+      type: "Machine Learning",
+      status: "Completed",
+      mastery: "Research Implementation",
+      featured: true,
+      technologies: [
+        { name: "Python", icon: SiPython, color: "#3776AB" },
+        { name: "Jupyter", icon: SiJupyter, color: "#F37626" },
+        { name: "Machine Learning", icon: FaBrain, color: "#10B981" },
+        { name: "Data Science", icon: FaShieldAlt, color: "#DC2626" }
+      ],
+      features: [
+        "High recall optimization (≥0.93)",
+        "Ensemble learning approach",
+        "PaySim dataset analysis",
+        "Performance benchmarking",
+        "Research paper implementation"
+      ],
+      image: "https://via.placeholder.com/400x250/DC2626/white?text=Fraud+Detection",
+      github: "https://github.com/dizzydroid/fraud-detection",
+      demo: null,
+      color: "from-red-500 to-orange-500",
+      bgGradient: "from-red-500/20 to-orange-500/20",
+      learnings: [
+        "Advanced ML ensemble methods",
+        "Model performance optimization",
+        "Financial data analysis",
+        "Research paper implementation",
+        "High-performance computing"
+      ]
+    },
+    // NON-FEATURED PROJECTS (shown only when "View All" is clicked)
+    {
+      id: 7,
       title: "GPS System - TivaC Embedded",
       subtitle: "C • Assembly • Embedded Systems",
       description: "An embedded GPS tracking system implemented on TivaC microcontroller using C and Assembly. Features real-time location tracking, data processing, and hardware interface management for precise positioning applications.",
@@ -168,6 +247,7 @@ const Projects = () => {
       type: "Hardware",
       status: "Completed",
       mastery: "University Project",
+      featured: false,
       technologies: [
         { name: "C", icon: SiC, color: "#A8B9CC" },
         { name: "Assembly", icon: FaCode, color: "#654FF0" },
@@ -195,42 +275,7 @@ const Projects = () => {
       ]
     },
     {
-      id: 6,
-      title: "Fraud Detection System",
-      subtitle: "Python • Machine Learning • High Performance",
-      description: "A Python implementation of Chung & Lee's 2023 fraud detection ensemble approach. Optimized for high recall (≥0.93) on the PaySim dataset with advanced machine learning techniques and performance optimization.",
-      category: "ml",
-      type: "Machine Learning",
-      status: "Completed",
-      mastery: "Research Implementation",
-      technologies: [
-        { name: "Python", icon: SiPython, color: "#3776AB" },
-        { name: "Jupyter", icon: SiJupyter, color: "#F37626" },
-        { name: "Machine Learning", icon: FaBrain, color: "#10B981" },
-        { name: "Data Science", icon: FaShieldAlt, color: "#DC2626" }
-      ],
-      features: [
-        "High recall optimization (≥0.93)",
-        "Ensemble learning approach",
-        "PaySim dataset analysis",
-        "Performance benchmarking",
-        "Research paper implementation"
-      ],
-      image: "https://via.placeholder.com/400x250/DC2626/white?text=Fraud+Detection",
-      github: "https://github.com/dizzydroid/fraud-detection",
-      demo: null,
-      color: "from-red-500 to-orange-500",
-      bgGradient: "from-red-500/20 to-orange-500/20",
-      learnings: [
-        "Advanced ML ensemble methods",
-        "Model performance optimization",
-        "Financial data analysis",
-        "Research paper implementation",
-        "High-performance computing"
-      ]
-    },
-    {
-      id: 7,
+      id: 8,
       title: "ByteWise - Educational Platform",
       subtitle: "Java • Educational Technology • Student-Instructor Portal",
       description: "A comprehensive Java-based educational platform for the CSE231s course, connecting students and instructors with interactive learning tools, assignment management, and progress tracking.",
@@ -238,8 +283,9 @@ const Projects = () => {
       type: "Educational Platform",
       status: "Completed",
       mastery: "Junior Project",
+      featured: false,
       technologies: [
-        { name: "Java", icon: FaJava, color: "#ED8B00" },
+        { name: "Java", icon: SiJava, color: "#ED8B00" },
         { name: "CSS", icon: FaCode, color: "#1572B6" },
         { name: "Web Development", icon: FaGlobe, color: "#28A745" },
         { name: "Educational Tech", icon: FaLightbulb, color: "#F59E0B" }
@@ -265,7 +311,7 @@ const Projects = () => {
       ]
     },
     {
-      id: 8,
+      id: 9,
       title: "NodeScope - XML Editor & Graph Visualizer",
       subtitle: "Python • Data Visualization • File Management",
       description: "A Python-based XML editor and graph visualizer designed for efficient file management and analysis. Features intuitive editing capabilities, visual graph representations, and advanced data processing tools.",
@@ -273,6 +319,7 @@ const Projects = () => {
       type: "Desktop Tool",
       status: "Completed",
       mastery: "Senior Project",
+      featured: false,
       technologies: [
         { name: "Python", icon: SiPython, color: "#3776AB" },
         { name: "Data Visualization", icon: FaChartBar, color: "#10B981" },
@@ -312,7 +359,7 @@ const Projects = () => {
     { 
       key: 'professional', 
       label: 'Professional', 
-      icon: SiUpwork, 
+      icon: FaUpwork, 
       color: 'from-green-500 to-blue-500',
       count: projects.filter(p => p.category === 'professional').length 
     },
@@ -361,9 +408,18 @@ const Projects = () => {
   ];
 
   const getFilteredProjects = () => {
-    if (activeFilter === 'all') return projects;
-    return projects.filter(project => project.category === activeFilter);
+    let filtered = activeFilter === 'all' ? projects : projects.filter(project => project.category === activeFilter);
+    
+    // Show only featured projects unless "View All" is toggled
+    if (!showAllProjects) {
+      filtered = filtered.filter(project => project.featured);
+    }
+    
+    return filtered;
   };
+
+  const featuredCount = projects.filter(p => p.featured).length;
+  const totalCount = projects.length;
 
   const floatingVariants = {
     animate: {
@@ -470,7 +526,7 @@ const Projects = () => {
             Featured <span className="bg-gradient-to-r from-accent-400 via-primary-400 to-green-400 bg-clip-text text-transparent">Projects</span>
           </h2>
           <p className="text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed">
-            From <span className="text-green-400 font-medium">professional AWS deployments</span> to <span className="text-blue-400 font-medium">NASA Space Apps challenges</span> — 
+            From <span className="text-green-400 font-medium">professional automation bots</span> to <span className="text-blue-400 font-medium">NASA Space Apps challenges</span> — 
             <span className="text-accent-400 font-medium"> diverse solutions across multiple domains</span>
           </p>
         </motion.div>
@@ -483,8 +539,12 @@ const Projects = () => {
           className="flex flex-wrap justify-center gap-4 mb-8"
         >
           <div className="flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full">
-            <SiUpwork className="text-green-400" />
+            <FaUpwork className="text-green-400" />
             <span className="text-green-300 text-sm font-medium">Active Upwork Freelancer</span>
+          </div>
+          <div className="flex items-center gap-2 px-4 py-2 bg-green-600/20 border border-green-600/30 rounded-full">
+            <SiFiverr className="text-green-400" />
+            <span className="text-green-300 text-sm font-medium">Fiverr Professional</span>
           </div>
           <div className="flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-full">
             <SiNasa className="text-blue-400" />
@@ -496,65 +556,107 @@ const Projects = () => {
           </div>
         </motion.div>
 
-        {/* Filter Buttons */}
+        {/* View Toggle */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-4 mb-16"
+          className="flex justify-center mb-8"
         >
-          {categories.map((category, index) => {
-            const IconComponent = category.icon;
-            return (
-              <motion.button
-                key={category.key}
-                onClick={() => setActiveFilter(category.key)}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className={`group relative px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-wider transition-all duration-300 overflow-hidden ${
-                  activeFilter === category.key
-                    ? 'text-white shadow-2xl shadow-accent-500/25'
-                    : 'text-gray-300 hover:text-white'
-                }`}
+          <motion.button
+            onClick={() => setShowAllProjects(!showAllProjects)}
+            className="group relative px-8 py-4 rounded-2xl font-bold text-lg bg-gradient-to-r from-accent-500/20 to-primary-500/20 border-2 border-accent-500/30 text-white hover:border-accent-500/60 transition-all duration-300 overflow-hidden"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-accent-500/10 to-primary-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative flex items-center gap-3">
+              <motion.div
+                animate={{ rotate: showAllProjects ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
               >
-                <div className={`absolute inset-0 bg-gradient-to-r ${
-                  activeFilter === category.key ? category.color : 'from-gray-800 to-gray-700'
-                } transition-all duration-300 ${
-                  activeFilter !== category.key ? 'opacity-50 group-hover:opacity-100' : ''
-                }`} />
-                
-                <div className="relative flex items-center gap-3">
-                  <motion.div
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <IconComponent className="text-lg" />
-                  </motion.div>
-                  {category.label}
-                  <span className="text-xs bg-white/20 px-2 py-1 rounded-full">
-                    {category.count}
-                  </span>
-                </div>
-
-                {activeFilter === category.key && (
-                  <motion.div
-                    layoutId="activeProjectFilter"
-                    className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full"
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  />
-                )}
-              </motion.button>
-            );
-          })}
+                {showAllProjects ? '📂' : '✨'}
+              </motion.div>
+              {showAllProjects 
+                ? `Showing All ${totalCount} Projects`
+                : `Featured Projects (${featuredCount}/${totalCount})`
+              }
+              <motion.span
+                animate={{ rotate: showAllProjects ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                ↓
+              </motion.span>
+            </div>
+          </motion.button>
         </motion.div>
+
+        {/* Filter Buttons - Only show when viewing all projects */}
+        <AnimatePresence>
+          {showAllProjects && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden mb-16"
+            >
+              <div className="flex flex-wrap justify-center gap-4">
+                {categories.map((category, index) => {
+                  const IconComponent = category.icon;
+                  return (
+                    <motion.button
+                      key={category.key}
+                      onClick={() => setActiveFilter(category.key)}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`group relative px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-wider transition-all duration-300 overflow-hidden ${
+                        activeFilter === category.key
+                          ? 'text-white shadow-2xl shadow-accent-500/25'
+                          : 'text-gray-300 hover:text-white'
+                      }`}
+                    >
+                      <div className={`absolute inset-0 bg-gradient-to-r ${
+                        activeFilter === category.key ? category.color : 'from-gray-800 to-gray-700'
+                      } transition-all duration-300 ${
+                        activeFilter !== category.key ? 'opacity-50 group-hover:opacity-100' : ''
+                      }`} />
+                      
+                      <div className="relative flex items-center gap-3">
+                        <motion.div
+                          whileHover={{ rotate: 360 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <IconComponent className="text-lg" />
+                        </motion.div>
+                        {category.label}
+                        <span className="text-xs bg-white/20 px-2 py-1 rounded-full">
+                          {category.count}
+                        </span>
+                      </div>
+
+                      {activeFilter === category.key && (
+                        <motion.div
+                          layoutId="activeProjectFilter"
+                          className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full"
+                          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                        />
+                      )}
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Projects Grid */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeFilter}
+            key={`${activeFilter}-${showAllProjects}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -575,6 +677,26 @@ const Projects = () => {
                 className="group relative"
               >
                 <div className={`relative p-8 rounded-3xl glass-effect border-2 border-gray-700/50 hover:border-accent-500/50 transition-all duration-500 overflow-hidden h-full`}>
+                  {/* Featured Badge */}
+                  {project.featured && (
+                    <div className="absolute top-4 left-4 z-20">
+                      <motion.div
+                        className="px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-accent-500 to-primary-500 text-white"
+                        whileHover={{ scale: 1.1 }}
+                        animate={{ 
+                          boxShadow: [
+                            "0 0 10px rgba(139, 92, 246, 0.3)",
+                            "0 0 20px rgba(139, 92, 246, 0.5)",
+                            "0 0 10px rgba(139, 92, 246, 0.3)"
+                          ]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        ⭐ Featured
+                      </motion.div>
+                    </div>
+                  )}
+
                   {/* Background Gradient */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                   
@@ -602,7 +724,7 @@ const Projects = () => {
                       </div>
 
                       {/* Mastery Level */}
-                      <div className="absolute top-4 left-4">
+                      <div className="absolute bottom-4 left-4">
                         <motion.span 
                           className="px-3 py-1 rounded-full text-xs font-medium bg-gray-900/80 text-gray-200 backdrop-blur-sm"
                           whileHover={{ scale: 1.1 }}
@@ -643,14 +765,26 @@ const Projects = () => {
                         )}
                         {project.upwork && (
                           <motion.a
-                            href="https://www.upwork.com/freelancers/~01e92e0c8b7675915f?p=1922432943075143680"
+                            href={project.demo}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-3 bg-green-600 rounded-full text-white hover:bg-green-700 transition-colors"
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                           >
-                            <SiUpwork />
+                            <FaUpwork />
+                          </motion.a>
+                        )}
+                        {project.fiverr && (
+                          <motion.a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-3 bg-green-500 rounded-full text-white hover:bg-green-600 transition-colors"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                          >
+                            <SiFiverr />
                           </motion.a>
                         )}
                       </motion.div>
@@ -724,30 +858,30 @@ const Projects = () => {
 
                       {/* Action Buttons */}
                       <div className="flex gap-3 pt-4 border-t border-gray-700/50">
-                        {project.demo && (
-                          <motion.a
-                            href={project.demo}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-accent-500 hover:bg-accent-600 rounded-xl text-white font-medium text-sm transition-colors"
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            <FaExternalLinkAlt className="text-xs" />
-                            View Project
-                          </motion.a>
-                        )}
                         {project.upwork && (
                           <motion.a
-                            href="https://www.upwork.com/freelancers/~01e92e0c8b7675915f?p=1922432943075143680"
+                            href={project.demo}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-xl text-white font-medium text-sm transition-colors"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
-                            <SiUpwork className="text-xs" />
+                            <FaUpwork className="text-xs" />
                             Upwork
+                          </motion.a>
+                        )}
+                        {project.fiverr && (
+                          <motion.a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 rounded-xl text-white font-medium text-sm transition-colors"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <SiFiverr className="text-xs" />
+                            Fiverr
                           </motion.a>
                         )}
                         {project.github && (
@@ -796,7 +930,7 @@ const Projects = () => {
                 Ready to <span className="bg-gradient-to-r from-accent-400 to-primary-400 bg-clip-text text-transparent">Collaborate</span>?
               </h3>
               <p className="text-gray-300 text-lg mb-6 max-w-2xl">
-                From <span className="text-green-400 font-medium">professional automation</span> to <span className="text-blue-400 font-medium">innovative solutions</span> — let's build something amazing together!
+                From <span className="text-green-400 font-medium">professional automation bots</span> to <span className="text-blue-400 font-medium">innovative solutions</span> — let's build something amazing together!
               </p>
               <motion.a
                 href="#contact"
