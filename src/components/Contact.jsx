@@ -233,8 +233,6 @@ const Contact = () => {
             </p>
           </motion.div>
 
-          // Update your existing Contact.jsx - just replace the form section (around line 236):
-
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Contact Info */}
             <motion.div variants={itemVariants} className="space-y-6 lg:space-y-8">
