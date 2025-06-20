@@ -168,7 +168,7 @@ const Hero = () => {
             {/* CTA Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col gap-4 relative z-[60] sm:flex-row sm:justify-center lg:justify-start"
+              className="flex flex-col gap-4 relative z-[50] sm:flex-row sm:justify-center lg:justify-start"
             >
               <motion.button
                 onClick={() => scrollToSection('projects')}
