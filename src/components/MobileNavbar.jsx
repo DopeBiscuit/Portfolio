@@ -71,7 +71,7 @@ const MobileNavbar = () => {
     <>
       {/* Mobile Navbar */}
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
           isScrolled ? 'glass-effect border-b border-dark-700/50' : 'bg-transparent'
         } md:hidden`}
       >
@@ -109,7 +109,7 @@ const MobileNavbar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-dark-950/90 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-[100] bg-dark-950/90 backdrop-blur-sm md:hidden"
             onClick={() => setIsOpen(false)}
           />
         )}
@@ -123,7 +123,7 @@ const MobileNavbar = () => {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed top-0 right-0 w-80 h-full bg-dark-900/95 backdrop-blur-xl border-l border-dark-700/50 z-50 md:hidden"
+            className="fixed top-0 right-0 w-80 h-full bg-dark-900/95 backdrop-blur-xl border-l border-dark-700/50 z-[100] md:hidden"
           >
             <div className="flex flex-col h-full">
               {/* Header */}
