@@ -18,6 +18,20 @@ const Skills = () => {
   const [viewMode, setViewMode] = useState('categories');
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+
+// Check if device is mobile - ADD THIS
+useEffect(() => {
+  const checkIsMobile = () => {
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const isSmallScreen = window.innerWidth <= 768;
+    setIsMobile(isTouchDevice || isSmallScreen);
+  };
+
+  checkIsMobile();
+  window.addEventListener('resize', checkIsMobile);
+  return () => window.removeEventListener('resize', checkIsMobile);
+}, []);
 
   // Helper function to render cluster icon - FIX FOR BUILD ERROR
   const renderClusterIcon = (cluster, className = "text-xs") => {
@@ -756,16 +770,18 @@ const Skills = () => {
         ))}
       </div>
 
-      {/* Mouse Follower */}
-      <motion.div
-        className="fixed w-4 h-4 bg-accent-500/30 rounded-full pointer-events-none z-50 mix-blend-screen"
-        style={{
-          left: mousePosition.x - 8,
-          top: mousePosition.y - 8,
-        }}
-        animate={{ scale: hoveredSkill ? 2 : 1 }}
-        transition={{ duration: 0.2 }}
-      />
+      {/* Mouse Follower - Only on Desktop */}
+      {!isMobile && (
+        <motion.div
+          className="fixed w-4 h-4 bg-accent-500/30 rounded-full pointer-events-none z-50 mix-blend-screen"
+          style={{
+            left: mousePosition.x - 8,
+            top: mousePosition.y - 8,
+          }}
+          animate={{ scale: hoveredSkill ? 2 : 1 }}
+          transition={{ duration: 0.2 }}
+        />
+      )}
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Epic Header */}
