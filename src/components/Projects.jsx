@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaCode, FaEye, FaRocket, FaLightbulb, FaTools, FaTrophy, FaAws, FaSlack, FaShoppingCart, FaMapMarkerAlt, FaClock, FaJava, FaChartBar, FaShieldAlt, FaBrain, FaGlobe, FaEnvelope, FaRobot, FaMicrochip } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaCode, FaEye, FaRocket, FaLightbulb, FaTools, FaTrophy, FaAws, FaSlack, FaShoppingCart, FaMapMarkerAlt, FaClock, FaJava, FaChartBar, FaShieldAlt, FaBrain, FaGlobe, FaMicrochip, FaEnvelope } from 'react-icons/fa';
 import { SiReact, SiPython, SiJavascript, SiNodedotjs, SiTailwindcss, SiCplusplus, SiInstagram, SiAwslambda, SiMongodb, SiExpress, SiFirebase, SiAndroid, SiPostgresql, SiJupyter, SiC, SiNasa, SiOpenai, SiFiverr } from 'react-icons/si';
 import { FaUpwork } from "react-icons/fa6";
 import { IoHardwareChip } from "react-icons/io5";
@@ -11,15 +11,31 @@ const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [showAllProjects, setShowAllProjects] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Track mouse for floating effects
+  // Check if device is mobile
   useEffect(() => {
+    const checkIsMobile = () => {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isSmallScreen = window.innerWidth <= 768;
+      setIsMobile(isTouchDevice || isSmallScreen);
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  // Track mouse for floating effects - only on desktop
+  useEffect(() => {
+    if (isMobile) return;
+
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [isMobile]);
 
   const projects = [
     {
@@ -63,7 +79,7 @@ const Projects = () => {
       id: 2,
       title: "Airbnb Data Scraper & Slack Bot",
       subtitle: "AWS Lambda • Python • Fiverr Client Work",
-      description: "A professional Python scraping bot that gathers data from Airbnb properties, processes the information, and sends structured reports to Slack channels. Deployed on AWS Lambda for scheduled execution with error handling and monitoring.",
+      description: "A professional Python scraping bot that gathers data from Airbnb properties, processes the information, and sends structured reports to Slack channels. Deployed on AWS Lambda for scalable, serverless automation.",
       category: "professional",
       type: "Automation",
       status: "Production",
@@ -100,7 +116,7 @@ const Projects = () => {
       id: 3,
       title: "CartNest - E-commerce Platform",
       subtitle: "Full Stack • JavaScript, Python, PostgreSQL",
-      description: "A comprehensive e-commerce platform with shopping cart functionality, user authentication, payment processing, and admin dashboard. Built with modern web technologies and PostgreSQL database for scalable online shopping experience.",
+      description: "A comprehensive e-commerce platform with shopping cart functionality, user authentication, payment processing, and admin dashboard. Built with modern web technologies and PostgreSQL database for robust data management.",
       category: "fullstack",
       type: "Web App",
       status: "Completed",
@@ -136,7 +152,7 @@ const Projects = () => {
       id: 4,
       title: "CHRONOS - CPU Scheduling Visualizer",
       subtitle: "Python Desktop App • Algorithm Visualization",
-      description: "A sophisticated desktop application that visualizes CPU scheduling algorithms with interactive Gantt charts. Supports FCFS, SJF, Priority Scheduling, and Round Robin with real-time statistics and dynamic process management.",
+      description: "A sophisticated desktop application that visualizes CPU scheduling algorithms with interactive Gantt charts. Supports FCFS, SJF, Priority Scheduling, and Round Robin with real-time statistics and performance comparisons.",
       category: "academic",
       type: "Desktop App",
       status: "Completed",
@@ -172,7 +188,7 @@ const Projects = () => {
       id: 5,
       title: "Climate Change App - NASA Space Apps 2024",
       subtitle: "Python • Machine Learning • NASA Challenge",
-      description: "A Python-based application developed for NASA Space Apps 2024 Challenge focusing on climate change analysis. Utilizes Arrow, STAC, RASTER data processing, and LLM integration for environmental data insights.",
+      description: "A Python-based application developed for NASA Space Apps 2024 Challenge focusing on climate change analysis. Utilizes Arrow, STAC, RASTER data processing, and LLM integration for comprehensive environmental insights.",
       category: "competition",
       type: "Data Science",
       status: "Competition Entry",
@@ -208,7 +224,7 @@ const Projects = () => {
       id: 6,
       title: "Fraud Detection System",
       subtitle: "Python • Machine Learning • High Performance",
-      description: "A Python implementation of Chung & Lee's 2023 fraud detection ensemble approach. Optimized for high recall (≥0.93) on the PaySim dataset with advanced machine learning techniques and performance optimization.",
+      description: "A Python implementation of Chung & Lee's 2023 fraud detection ensemble approach. Optimized for high recall (≥0.93) on the PaySim dataset with advanced machine learning techniques and performance benchmarking.",
       category: "ml",
       type: "Machine Learning",
       status: "Completed",
@@ -281,7 +297,7 @@ const Projects = () => {
       id: 8,
       title: "ByteWise - Educational Platform",
       subtitle: "Java • Educational Technology • Student-Instructor Portal",
-      description: "A comprehensive Java-based educational platform for the CSE231s course, connecting students and instructors with interactive learning tools, assignment management, and progress tracking.",
+      description: "A comprehensive Java-based educational platform for the CSE231s course, connecting students and instructors with interactive learning tools, assignment management, and progress tracking features.",
       category: "academic",
       type: "Educational Platform",
       status: "Completed",
@@ -353,7 +369,7 @@ const Projects = () => {
       id: 10,
       title: "RISC-V Processor with Verilog",
       subtitle: "Verilog • Digital Design • CPU Architecture",
-      description: "A comprehensive RISC-V processor implementation in Verilog supporting 5 of 6 instruction formats. Features 30+ instructions covering 75% of the reference design, including I-type, R-type, J-type, S-type, and B-type instruction formats with full pipeline architecture.",
+      description: "A comprehensive RISC-V processor implementation in Verilog supporting 5 of 6 instruction formats. Features 30+ instructions covering 75% of the reference design, including I-type, R-type, S-type, B-type, and U-type instructions.",
       category: "hardware",
       type: "Hardware Design",
       status: "Completed",
@@ -543,16 +559,18 @@ const Projects = () => {
         ))}
       </div>
 
-      {/* Mouse Follower */}
-      <motion.div
-        className="fixed w-6 h-6 bg-accent-500/20 rounded-full pointer-events-none z-50 mix-blend-screen"
-        style={{
-          left: mousePosition.x - 12,
-          top: mousePosition.y - 12,
-        }}
-        animate={{ scale: hoveredProject ? 1.5 : 1 }}
-        transition={{ duration: 0.2 }}
-      />
+      {/* Mouse Follower - Only on Desktop */}
+      {!isMobile && (
+        <motion.div
+          className="fixed w-6 h-6 bg-accent-500/20 rounded-full pointer-events-none z-50 mix-blend-screen"
+          style={{
+            left: mousePosition.x - 12,
+            top: mousePosition.y - 12,
+          }}
+          animate={{ scale: hoveredProject ? 1.5 : 1 }}
+          transition={{ duration: 0.2 }}
+        />
+      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Epic Header */}
@@ -612,7 +630,7 @@ const Projects = () => {
         >
           <motion.button
             onClick={() => setShowAllProjects(!showAllProjects)}
-            className="group relative px-8 py-4 rounded-2xl font-bold text-lg bg-gradient-to-r from-accent-500/20 to-primary-500/20 border-2 border-accent-500/30 text-white hover:border-accent-500/60 transition-all duration-300 overflow-hidden"
+            className="group relative px-8 py-4 rounded-2xl font-bold text-lg bg-gradient-to-r from-accent-500/20 to-primary-500/20 border-2 border-accent-500/30 text-white hover:border-accent-500/50 transition-all duration-300"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >

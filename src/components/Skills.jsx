@@ -25,14 +25,29 @@ const Skills = () => {
     return <IconComponent className={className} />;
   };
 
-  // Track mouse for floating elements
+  // Check if device is mobile
   useEffect(() => {
+    const checkIsMobile = () => {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isSmallScreen = window.innerWidth <= 768;
+      setIsMobile(isTouchDevice || isSmallScreen);
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  // Track mouse for floating elements - only on desktop
+  useEffect(() => {
+    if (isMobile) return;
+
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [isMobile]);
 
   // Reset view mode when filter changes
   useEffect(() => {
