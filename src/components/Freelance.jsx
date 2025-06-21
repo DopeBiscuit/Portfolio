@@ -171,7 +171,7 @@ const Freelance = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-secondary inline-flex items-center justify-center gap-2 flex-1"
+                  className="btn-primary inline-flex items-center justify-center gap-2 flex-1"
                 >
                   <FaUpwork className="w-4 h-4" />
                   View Upwork Profile
