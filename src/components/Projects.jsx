@@ -629,7 +629,13 @@ const Projects = () => {
           className="flex justify-center mb-8"
         >
           <motion.button
-            onClick={() => setShowAllProjects(!showAllProjects)}
+            onClick={() => {
+                      setShowAllProjects(!showAllProjects);
+                      // Reset filter to 'all' when collapsing to show featured projects
+                      if (showAllProjects) {
+                        setActiveFilter('all');
+                      }
+                    }}
             className="group relative px-8 py-4 rounded-2xl font-bold text-lg bg-gradient-to-r from-accent-500/20 to-primary-500/20 border-2 border-accent-500/30 text-white hover:border-accent-500/50 transition-all duration-300"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
