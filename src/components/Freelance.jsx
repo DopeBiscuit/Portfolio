@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { StarIcon, CheckBadgeIcon, ClockIcon } from '@heroicons/react/24/solid';
+import { SiFiverr } from 'react-icons/si';
+import { FaUpwork } from 'react-icons/fa6';
 
 const Freelance = () => {
   const [ref, inView] = useInView({
@@ -60,7 +62,7 @@ const Freelance = () => {
   };
 
   return (
-    <section className="py-20 relative">
+    <section id="freelance" className="py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -146,20 +148,38 @@ const Freelance = () => {
                 </div>
               </div>
 
-              {/* CTA */}
-              <motion.a
-                href="https://www.fiverr.com/users/boody_hany"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-primary inline-flex items-center gap-2"
-              >
-                View Fiverr Profile
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </motion.a>
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <motion.a
+                  href="https://www.fiverr.com/users/boody_hany"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="btn-primary inline-flex items-center justify-center gap-2 flex-1"
+                >
+                  <SiFiverr className="w-4 h-4" />
+                  View Fiverr Profile
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </motion.a>
+                
+                <motion.a
+                  href="https://www.upwork.com/freelancers/~01e92e0c8b7675915f"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="btn-secondary inline-flex items-center justify-center gap-2 flex-1"
+                >
+                  <FaUpwork className="w-4 h-4" />
+                  View Upwork Profile
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </motion.a>
+              </div>
             </motion.div>
 
             {/* Right - Services */}
