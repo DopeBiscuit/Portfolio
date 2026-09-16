@@ -1,0 +1,56 @@
+# Cursor rules, Abdelrahman Hany portfolio
+
+## What this project is
+A single page portfolio for an automation engineer. Recruiter first. The whole page
+argues one claim: manual work is unclaimed profit, and here is proof.
+
+## Design law
+- Tokens live in `app/tokens.css`. Never introduce a colour, font, radius or duration
+  that is not in that file. If a value seems missing, it is deliberate.
+- One accent only: brass `#d8b678`. It marks reclaimed value, emphasis, and primary
+  actions. The sage dot on the availability pill is the only other hue on the page.
+  Do not add a second accent, a gradient background, or a coloured section.
+- Display type is Newsreader 400, and the ITALIC carries emphasis inside headlines
+  ("unclaimed *profit*", "losing *hours*"). UI and body type is Archivo.
+- Corner radius is 3px on controls and 4px on cards. Nothing is pill shaped except
+  the availability badge.
+- Flush left everything. No centred body copy.
+
+## Copy law
+- NO EM DASHES anywhere, in copy, comments or commit messages. Use a comma, a colon,
+  a full stop, or restructure the sentence.
+- Plain first person. Write like a person explaining their work to another person.
+  No "leveraging", no "cutting edge", no "robust scalable solutions", no exclamation
+  marks, no emoji.
+- Never invent a metric, a client name, or an outcome. Every number on this site is
+  real and traceable to the resume or a named project. If copy is missing, leave a
+  TODO and ask.
+
+## Motion budget, deliberately small
+There are exactly four moving things. Do not add a fifth without asking.
+1. The hero pipeline diagram: dashes flow along the connector paths, node squares pulse.
+2. Scroll reveals: fade and rise 16px, 620ms, staggered by (index % 4) * 70ms, fired
+   once by IntersectionObserver and never reversed.
+3. The rewrite: "4 hours a day" slides up to "4 minutes" once, 1500ms after mount.
+4. Card hover: lift 3px, border warms to `--border-hover`, shadow appears, 260ms.
+
+Everything must be silenced under `prefers-reduced-motion: reduce`, and scroll reveals
+must render content visible, never leave it hidden.
+
+## Accessibility bars, already verified in the design
+- Body sized text needs 4.5:1 against its own background. The muted greys in the
+  tokens file are chosen to clear it. Do not darken them.
+- Large display type may sit at 3:1.
+- Every interactive element needs a visible `:focus-visible` ring. Use a 2px brass
+  outline with 2px offset.
+- The RUNE screenshot needs the long alt text from `content.json`, not "screenshot".
+
+## Code conventions
+- Next.js App Router, TypeScript, server components by default. Add `"use client"`
+  only where an effect or a form genuinely needs it: the reveal hook, the rewrite,
+  the mobile nav, the contact form.
+- All copy comes from `content/site.json`. No hardcoded strings in components.
+- Use `next/image` for the portrait and the RUNE screenshot, with explicit width and
+  height from `content.json`.
+- No component library, no animation library. The reveal is about 30 lines of
+  IntersectionObserver in a custom hook.

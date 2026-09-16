@@ -1,0 +1,76 @@
+/* Abdelrahman Hany portfolio, design tokens
+   Lifted verbatim from the approved design. Do not invent values outside this file. */
+
+:root {
+  /* Ground and surfaces, darkest to lightest */
+  --bg:            #101316;  /* page ground */
+  --surface-1:     #12171b;  /* alternating section band */
+  --surface-2:     #161b20;  /* case study cards */
+  --surface-3:     #171c21;  /* pattern cards */
+  --surface-image: #0d1013;  /* letterbox behind screenshots */
+  --surface-pill:  #151a1e;  /* hero status pill */
+  --surface-warm:  #161a15;  /* contact band, faint green cast */
+  --nav-bg:        rgba(16, 19, 22, 0.86); /* + backdrop-filter: blur(10px) */
+
+  /* Borders */
+  --seam:          #1e242a;  /* between major sections */
+  --border:        #262d34;  /* cards, image edges, list rules */
+  --border-subtle: #2d343b;  /* tag chips, pill, hairline connectors */
+  --border-strong: #333b42;  /* outline button */
+  --border-warm:   #39413a;  /* outline button on contact band */
+  --border-hover:  #4a4133;  /* card hover, brass tinted */
+
+  /* Ink */
+  --text-display:  #f4f2ee;  /* headlines, card titles */
+  --text-body:     #cfd4d9;  /* friction and fix copy */
+  --text-body-2:   #b9bfc5;  /* ledes, method copy */
+  --text-muted:    #a7adb4;  /* nav links, stat labels, stack items */
+  --text-muted-2:  #9aa1a8;  /* diagram labels, before state copy */
+  --text-faint:    #8d949b;  /* eyebrows, footnotes, footer */
+  --text-on-brass: #101316;  /* label inside a brass button */
+  --text-on-warm:  #c4cac0;  /* body on the contact band */
+
+  /* Accent */
+  --brass:         #d8b678;  /* the one accent: emphasis, marks, primary fill */
+  --brass-hover:   #eed9a8;
+  --brass-wash:    rgba(216, 182, 120, 0.05);  /* agent box fill */
+  --brass-wash-2:  rgba(216, 182, 120, 0.12);  /* output box fill */
+  --brass-glow:    rgba(216, 182, 120, 0.10);  /* hero radial */
+  --sage:          #7fa898;  /* availability dot, only second hue on the page */
+
+  /* Type */
+  --font-display: var(--font-newsreader), "Newsreader", Georgia, serif;
+  --font-ui:      var(--font-archivo), "Archivo", system-ui, sans-serif;
+
+  /* Layout */
+  --measure:   1180px;
+  --gutter:    clamp(20px, 5vw, 64px);
+  --radius:    3px;   /* buttons, chips */
+  --radius-lg: 4px;   /* cards, figures */
+
+  /* Motion */
+  --reveal:      620ms cubic-bezier(0.22, 0.85, 0.2, 1);
+  --hover:       260ms ease;
+  --rewrite:     860ms cubic-bezier(0.2, 0.85, 0.15, 1);
+  --stagger:     70ms;  /* multiplied by (index % 4) */
+  --shadow-lift: 0 14px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Type scale, exactly as built */
+/* h1            font-display 400  clamp(40px, 5.4vw, 74px)  / 1.04  / -0.02em
+   section h2    font-display 400  clamp(30px, 3.4vw, 44px)  / 1.1   / -0.015em
+   contact h2    font-display 400  clamp(32px, 4.2vw, 58px)  / 1.06  / -0.02em
+   about h2      font-display 400  clamp(27px, 2.8vw, 37px)  / 1.15  / -0.015em
+   card title    font-display 400  30px                      / 1.15  / -0.015em
+   stat value    font-display 400  clamp(34px, 3.4vw, 46px)  / 1.1
+   rewrite line  font-display 400  clamp(38px, 4.4vw, 60px)  / box clamp(52px, 5.4vw, 74px)
+   hero body     font-ui      400  17px / 30px
+   lede          font-ui      400  15.5px / 28px
+   card copy     font-ui      400  14.5px / 26px
+   pattern h3    font-ui      600  18px / 27px
+   method h3     font-ui      600  19px / 27px
+   stack group   font-ui      600  13px / uppercase / 0.06em
+   kicker        font-ui      400  12.5px / uppercase / 0.1em
+   micro label   font-ui      400  11.5px / uppercase / 0.11em
+   tag chip      font-ui      400  12px
+   footnote      font-ui      400  13px / 22px  */

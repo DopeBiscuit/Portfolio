@@ -1,0 +1,388 @@
+{
+  "meta": {
+    "name": "Abdelrahman Hany",
+    "role": "Automation Engineer",
+    "location": "Cairo, Egypt",
+    "availability": "Open to work",
+    "email": "abdulrahman.hany003@gmail.com",
+    "github": "https://github.com/DopeBiscuit",
+    "linkedin": "https://www.linkedin.com/in/abdelrahmanhany2026/",
+    "fiverr": "https://www.fiverr.com/users/boody_hany",
+    "upwork": "https://www.upwork.com/freelancers/~01e92e0c8b7675915f",
+    "resume": "/abdelrahman_resume.pdf",
+    "title": "Abdelrahman Hany, Automation Engineer",
+    "description": "I look at how work actually gets done, find the hours quietly leaking out of it, then build the thing that takes them back. Scripts, data pipelines, AI agents, internal tools."
+  },
+  "nav": {
+    "links": [
+      { "label": "Work", "href": "#work" },
+      { "label": "Patterns", "href": "#patterns" },
+      { "label": "Method", "href": "#method" },
+      { "label": "About", "href": "#about" }
+    ],
+    "resumeLabel": "Résumé",
+    "mark": "AH",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
+  },
+  "hero": {
+    "pill": "Automation engineer · Cairo · Open to work",
+    "headline": {
+      "lead": "Manual work is",
+      "emphasis": "unclaimed profit."
+    },
+    "lede": [
+      { "text": "I look at how work actually gets done, find the " },
+      { "text": "hours leaking out of it", "mark": true },
+      { "text": ", then build the thing that takes them back." }
+    ],
+    "proof": [
+      { "text": "Scripts, data pipelines, AI agents, internal tools. I've built " },
+      { "text": "over a hundred of them", "mark": true },
+      { "text": " in five years of freelancing, while I was studying computer engineering." }
+    ],
+    "ctas": [
+      {
+        "label": "See the work",
+        "href": "#work",
+        "variant": "primary"
+      },
+      {
+        "label": "Start a conversation",
+        "href": "#contact",
+        "variant": "outline"
+      }
+    ],
+    "diagram": {
+      "label": "Diagram: scattered manual inputs flowing through an agent into reclaimed hours",
+      "inputs": ["inbox", "spreadsheets", "APIs", "scrapers"],
+      "processor": "agent",
+      "output": "reclaimed"
+    }
+  },
+  "reclaim": {
+    "kicker": "What reclaiming a day looks like",
+    "before": "4 hours a day",
+    "after": "4 minutes",
+    "body": [
+      { "text": "Someone spends a morning on inbound mail, or rebuilds the same report by hand every week. Once the flow runs itself, that work is " },
+      { "text": "a few minutes of checking exceptions", "mark": true },
+      { "text": "." }
+    ],
+    "footnote": "Figure measured on a client's inbox triage, before and after."
+  },
+  "stats": [
+    {
+      "value": "100+",
+      "label": "Automations delivered"
+    },
+    {
+      "value": "5",
+      "label": "Years freelancing, while studying"
+    },
+    {
+      "value": "8",
+      "label": "Languages in production use"
+    },
+    {
+      "value": "1",
+      "label": "Mars rover, Kraków"
+    }
+  ],
+  "proof": [
+    {
+      "label": "Fiverr",
+      "href": "https://www.fiverr.com/users/boody_hany"
+    },
+    {
+      "label": "Upwork",
+      "href": "https://www.upwork.com/freelancers/~01e92e0c8b7675915f"
+    }
+  ],
+  "work": {
+    "kicker": "Selected work",
+    "heading": "Three that show the range.",
+    "cases": [
+      {
+        "num": "01",
+        "title": "RUNE",
+        "lede": "An open source platform for building automations. I built the execution core: the small language that reads a node graph, the schema that stores it, and the Go workers that run it all at once.",
+        "tags": ["Go", "DSL", "Postgres", "Microsoft sponsored"],
+        "friction": "Automating anything still assumes you know distributed systems. The tools that hide that, like Zapier and n8n, put it behind a subscription that gets expensive fast.",
+        "fix": "A visual canvas backed by a small language, run by workers that execute nodes concurrently, with each node's state visible while it runs.",
+        "result": "Free and self hostable, so the bill doesn't climb at exactly the moment the automation starts being useful.",
+        "link": {
+          "label": "View the repository",
+          "href": "https://github.com/rune-org/rune"
+        },
+        "note": null,
+        "images": [
+          {
+            "src": "/rune-cloudflare.webp",
+            "width": 800,
+            "height": 467,
+            "label": "Canvas",
+            "alt": "A RUNE workflow running on the canvas, nodes lighting up as the flow executes"
+          }
+        ]
+      },
+      {
+        "num": "02",
+        "title": "Gmail customer data bot",
+        "lede": "A firm had someone reading every inbound email and retyping customer details into a database by hand.",
+        "tags": ["Python", "OpenAI", "Gmail API"],
+        "friction": "Four hours of somebody's day, every day, and the data still arrived late and inconsistent. The real cost was the salary plus every mistake that followed downstream.",
+        "fix": "An agent reads each message, works out what kind it is, pulls the fields that matter, checks them, and writes straight into the database.",
+        "result": "Four hours a day became a few minutes of looking over the exceptions. Nobody retypes anything now.",
+        "note": "Client work, so the code and the screenshots stay private.",
+        "link": null,
+        "images": []
+      },
+      {
+        "num": "03",
+        "title": "ASU ROAR",
+        "lede": "System architect on a competition Mars rover. Same instinct, pointed at hardware: find the broken link in the chain, then fix the chain.",
+        "tags": ["ROS", "CAN", "RF mesh", "European Rover Challenge"],
+        "friction": "Localisation and mapping were dead because the ROS transform tree was malformed, and the command link kept dropping in the middle of a run.",
+        "fix": "Rebuilt the transform tree, wrote a UART to CAN interfacer for the Jetson, then designed and RF tested a mesh network for the link.",
+        "result": "Mapping came back, the link held through the run, and over a hundred recruits went through two workshops I wrote.",
+        "note": null,
+        "link": null,
+        "images": []
+      }
+    ]
+  },
+  "patterns": {
+    "kicker": "Patterns",
+    "heading": "What I'm hired to do.",
+    "intro": "Most of the hundred plus projects are undocumented or under NDA, but the shapes repeat. These four cover nearly all of them.",
+    "items": [
+      {
+        "title": "Instant reporting",
+        "before": "Staff assembling the same PDF report by hand, every single week.",
+        "after": "Now it generates on demand and mails itself out, and the hours that used to go into it go somewhere useful."
+      },
+      {
+        "title": "Data pipelines",
+        "before": "Copy and paste between an API, a spreadsheet, and a calculation nobody quite trusts.",
+        "after": "Collected through an API or a scraper, cleaned up, run through the real calculation, and published as the output people actually asked for."
+      },
+      {
+        "title": "Spreadsheet to app",
+        "before": "A fragile workbook that only one person in the company can safely open.",
+        "after": "Same logic, but behind a real interface the whole team can use without breaking anything."
+      },
+      {
+        "title": "Process audit",
+        "before": "“We know it's slow, we just don't know where.”",
+        "after": "I map how the work really flows, then tell you honestly which parts are worth automating and which ones aren't."
+      }
+    ]
+  },
+  "method": {
+    "kicker": "Method",
+    "heading": "How the hours come back.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Audit",
+        "body": "Sit with the process as it really runs. Time it. Find where the hours are going."
+      },
+      {
+        "num": "02",
+        "title": "Map",
+        "body": "Draw the flow people actually follow, not the one on the org chart. They usually differ."
+      },
+      {
+        "num": "03",
+        "title": "Automate",
+        "body": "Scripts, APIs, agents, workers. Whatever the job needs, and nothing it doesn't."
+      },
+      {
+        "num": "04",
+        "title": "Hand over",
+        "body": "Documented, owned by them, still running long after I've moved on."
+      }
+    ]
+  },
+  "stack": {
+    "kicker": "What I build with",
+    "groups": [
+      {
+        "title": "Languages",
+        "items": [
+          "Python",
+          "Go",
+          "C and C++",
+          "JavaScript",
+          "TypeScript",
+          "Java",
+          "Verilog"
+        ]
+      },
+      {
+        "title": "Automation and AI",
+        "items": [
+          "OpenAI API and agents",
+          "Google Apps Script",
+          "Selenium",
+          "Workflow engines"
+        ]
+      },
+      {
+        "title": "Cloud and data",
+        "items": [
+          "AWS, Lambda",
+          "Docker",
+          "PostgreSQL",
+          "MongoDB"
+        ]
+      },
+      {
+        "title": "Hardware and systems",
+        "items": [
+          "ROS",
+          "CAN bus",
+          "Tiva C, RISC-V",
+          "Linux"
+        ]
+      }
+    ]
+  },
+  "about": {
+    "kicker": "About",
+    "heading": "A computer engineer who kept taking freelance work.",
+    "body": [
+      "I graduated in computer engineering from Ain Shams this year, and I freelanced the whole way through. That taught me something a degree doesn't: how to build for people who don't care how it works, only that their afternoon is free again.",
+      "I like hard, niche problems, and I pick things up quickly. Apps Script, then Python, then agents, then Go workers and a rover's transform tree. I'm a recovering perfectionist, so shipping on time is the thing I actively practise. And I do my best work on a good team."
+    ],
+    "credentialsLabel": "Credentials",
+    "portrait": {
+      "src": "/profile.png",
+      "alt": "Abdelrahman Hany",
+      "width": 600,
+      "height": 800
+    },
+    "credentials": [
+      {
+        "title": "BSc Computer Engineering",
+        "detail": "Ain Shams University, 2026 · GPA 3.42",
+        "link": null,
+        "linkLabel": null
+      },
+      {
+        "title": "AWS Cloud Architect",
+        "detail": "· NTI, 2025",
+        "link": null,
+        "linkLabel": null
+      },
+      {
+        "title": "MIT 6.86x Machine Learning",
+        "detail": "· 2024",
+        "link": "https://courses.edx.org/certificates/0f44b0139bab498b80e2725da36c4343",
+        "linkLabel": "Verify"
+      },
+      {
+        "title": "MIT 6.431x Probability",
+        "detail": "· 2024",
+        "link": "https://courses.edx.org/certificates/c6b8335448a443b89f7a289b1ecb4fea",
+        "linkLabel": "Verify"
+      },
+      {
+        "title": "Harvard CS50",
+        "detail": "· 2022",
+        "link": "https://courses.edx.org/certificates/fc66b15fe96140f4ae9fce6733f2d109",
+        "linkLabel": "Verify"
+      },
+      {
+        "title": "Cisco CCNA",
+        "detail": "· 2023",
+        "link": "https://drive.google.com/file/d/1P81ARw3WIPVc-08J171dw1A3QbJKUTMc/view",
+        "linkLabel": "Verify"
+      },
+      {
+        "title": "2nd place, ASU AI Engineering Hackathon",
+        "detail": "· 2024",
+        "link": "https://www.linkedin.com/posts/abdelrahmanhany2026_final-report-of-qa%C2%B2-activity-7204880108682182656-NUmG",
+        "linkLabel": "See it"
+      },
+      {
+        "title": "NASA Space Apps, climate dashboard",
+        "detail": "· 2024",
+        "link": "https://www.linkedin.com/posts/abdelrahmanhany2026_spaceapps-activity-7254440208945848322--_w_",
+        "linkLabel": "See it"
+      }
+    ]
+  },
+  "foundations": {
+    "kicker": "Engineering foundations",
+    "intro": "University and competition work. Not value recovery projects, but where the fundamentals came from.",
+    "items": [
+      {
+        "strong": "RISC-V processor",
+        "rest": " in Verilog, 30+ instructions",
+        "href": "https://github.com/DopeBiscuit/RISC-V-Processor-Verilog"
+      },
+      {
+        "strong": "CHRONOS",
+        "rest": ", a CPU scheduler with live Gantt charts",
+        "href": "https://github.com/dizzydroid/ASU_SeniorProject_OS"
+      },
+      {
+        "strong": "CartNest",
+        "rest": ", sharded full stack e-commerce",
+        "href": "https://github.com/moazragab12/Cartnest"
+      },
+      {
+        "strong": "GPS tracking on Tiva C",
+        "rest": ", MCU to server API",
+        "href": "https://github.com/MashaWaleed/GPS-System-TIVAC-CSE211"
+      },
+      {
+        "strong": "NASA Space Apps 2024",
+        "rest": ", a 20 year climate dashboard",
+        "href": "https://github.com/PerfectionistAF/Climate_Change_App"
+      }
+    ],
+    "link": {
+      "label": "All of it on GitHub",
+      "href": "https://github.com/DopeBiscuit"
+    }
+  },
+  "contact": {
+    "kicker": "Contact",
+    "headline": {
+      "lead": "Where is your team",
+      "emphasis": "losing hours?"
+    },
+    "body": "Tell me about the process. I'll tell you honestly whether it's worth automating, and what it would take.",
+    "actions": [
+      {
+        "label": "Email",
+        "href": "mailto:abdulrahman.hany003@gmail.com"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/DopeBiscuit"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/abdelrahmanhany2026/"
+      }
+    ],
+    "form": {
+      "nameLabel": "Name",
+      "emailLabel": "Email",
+      "messageLabel": "What process is costing you time",
+      "submit": "Send",
+      "sending": "Sending",
+      "success": "Received. I will write back.",
+      "error": "That did not send. Email me instead.",
+      "honeypot": "Company"
+    }
+  },
+  "footer": {
+    "left": "Cairo, Egypt · Open to full time roles",
+    "mark": "AH"
+  }
+}
