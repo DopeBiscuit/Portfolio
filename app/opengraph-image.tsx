@@ -18,7 +18,7 @@ export default function OpenGraphImage() {
           color: "#f4f2ee",
         }}
       >
-        <div style={{ fontSize: 56, fontStyle: "italic", color: "#d8b678" }}>ah</div>
+        <div style={{ fontSize: 56, fontStyle: "italic", color: "#dc8560" }}>ah</div>
         <div style={{ fontSize: 54, marginTop: 28, lineHeight: 1.1 }}>
           Manual work is unclaimed profit.
         </div>

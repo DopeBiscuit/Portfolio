@@ -7,7 +7,7 @@ argues one claim: manual work is unclaimed profit, and here is proof.
 ## Design law
 - Tokens live in `app/tokens.css`. Never introduce a colour, font, radius or duration
   that is not in that file. If a value seems missing, it is deliberate.
-- One accent only: brass `#d8b678`. It marks reclaimed value, emphasis, and primary
+- One accent only: copper `#dc8560`. It marks reclaimed value, emphasis, and primary
   actions. The sage dot on the availability pill is the only other hue on the page.
   Do not add a second accent, a gradient background, or a coloured section.
 - Display type is Newsreader 400, and the ITALIC carries emphasis inside headlines
@@ -41,7 +41,7 @@ must render content visible, never leave it hidden.
 - Body sized text needs 4.5:1 against its own background. The muted greys in the
   tokens file are chosen to clear it. Do not darken them.
 - Large display type may sit at 3:1.
-- Every interactive element needs a visible `:focus-visible` ring. Use a 2px brass
+- Every interactive element needs a visible `:focus-visible` ring. Use a 2px copper
   outline with 2px offset.
 - The RUNE screenshot needs the long alt text from `content.json`, not "screenshot".
 

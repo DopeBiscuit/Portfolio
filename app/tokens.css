@@ -9,7 +9,7 @@
   --surface-3:     #171c21;  /* pattern cards */
   --surface-image: #0d1013;  /* letterbox behind screenshots */
   --surface-pill:  #151a1e;  /* hero status pill */
-  --surface-warm:  #161a15;  /* contact band, faint green cast */
+  --surface-warm:  #12171b;  /* contact band, same family as surface-1 */
   --nav-bg:        rgba(16, 19, 22, 0.86); /* + backdrop-filter: blur(10px) */
 
   /* Borders */
@@ -17,8 +17,8 @@
   --border:        #262d34;  /* cards, image edges, list rules */
   --border-subtle: #2d343b;  /* tag chips, pill, hairline connectors */
   --border-strong: #333b42;  /* outline button */
-  --border-warm:   #39413a;  /* outline button on contact band */
-  --border-hover:  #4a4133;  /* card hover, brass tinted */
+  --border-warm:   #333b42;  /* outline button on contact band */
+  --border-hover:  #4a3833;  /* card hover, copper tinted */
 
   /* Ink */
   --text-display:  #f4f2ee;  /* headlines, card titles */
@@ -27,15 +27,15 @@
   --text-muted:    #a7adb4;  /* nav links, stat labels, stack items */
   --text-muted-2:  #9aa1a8;  /* diagram labels, before state copy */
   --text-faint:    #8d949b;  /* eyebrows, footnotes, footer */
-  --text-on-brass: #101316;  /* label inside a brass button */
-  --text-on-warm:  #c4cac0;  /* body on the contact band */
+  --text-on-brass: #101316;  /* label inside the accent button */
+  --text-on-warm:  #b9bfc5;  /* body on the contact band */
 
   /* Accent */
-  --brass:         #d8b678;  /* the one accent: emphasis, marks, primary fill */
-  --brass-hover:   #eed9a8;
-  --brass-wash:    rgba(216, 182, 120, 0.05);  /* agent box fill */
-  --brass-wash-2:  rgba(216, 182, 120, 0.12);  /* output box fill */
-  --brass-glow:    rgba(216, 182, 120, 0.10);  /* hero radial */
+  --brass:         #dc8560;  /* the one accent: copper, emphasis, primary fill */
+  --brass-hover:   #eab094;
+  --brass-wash:    rgba(220, 133, 96, 0.05);  /* agent box fill */
+  --brass-wash-2:  rgba(220, 133, 96, 0.12);  /* output box fill */
+  --brass-glow:    rgba(220, 133, 96, 0.10);  /* hero radial */
   --sage:          #7fa898;  /* availability dot, only second hue on the page */
 
   /* Type */
