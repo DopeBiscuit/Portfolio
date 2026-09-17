@@ -94,7 +94,12 @@ export function Nav() {
               {link.label}
             </a>
           ))}
-          <a href={site.meta.resume} className="btn-nav">
+          <a
+            href={site.meta.resume}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-nav"
+          >
             {site.nav.resumeLabel}
           </a>
         </div>
@@ -144,7 +149,13 @@ export function Nav() {
             <a href="#contact" onClick={close} className="font-display text-[32px] text-text-muted">
               Contact
             </a>
-            <a href={site.meta.resume} className="btn-nav w-fit" onClick={close}>
+            <a
+              href={site.meta.resume}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-nav w-fit"
+              onClick={close}
+            >
               {site.nav.resumeLabel}
             </a>
           </div>
