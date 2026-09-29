@@ -284,8 +284,8 @@ a:hover {
 }
 
 .contact-panel {
-  background: #121610;
-  border: 1px solid var(--border-warm);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: clamp(22px, 3vw, 32px);
 }
@@ -316,13 +316,13 @@ a:hover {
   font-size: 14.5px;
   color: var(--text-display);
   caret-color: var(--brass);
-  background: #121610;
-  border: 1px solid var(--border-warm);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
 }
 
 .field-input:hover {
-  border-color: color-mix(in srgb, var(--text-on-warm) 45%, transparent);
+  border-color: var(--border-strong);
 }
 
 .field-input:focus-visible {
