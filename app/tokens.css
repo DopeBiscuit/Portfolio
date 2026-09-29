@@ -18,7 +18,7 @@
   --border-subtle: #2d343b;  /* tag chips, pill, hairline connectors */
   --border-strong: #333b42;  /* outline button */
   --border-warm:   #333b42;  /* outline button on contact band */
-  --border-hover:  #3a424a;  /* card hover, pewter tinted */
+  --border-hover:  #334650;  /* card hover, teal tinted */
 
   /* Ink */
   --text-display:  #f4f2ee;  /* headlines, card titles */
@@ -31,11 +31,11 @@
   --text-on-warm:  #b9bfc5;  /* body on the contact band */
 
   /* Accent */
-  --brass:         #c5ced6;  /* the one accent: pewter, emphasis, primary fill */
-  --brass-hover:   #dde3e8;
-  --brass-wash:    rgba(197, 206, 214, 0.05);  /* agent box fill */
-  --brass-wash-2:  rgba(197, 206, 214, 0.12);  /* output box fill */
-  --brass-glow:    rgba(197, 206, 214, 0.10);  /* hero radial */
+  --brass:         #63a8c5;  /* the one accent: teal steel, emphasis, primary fill */
+  --brass-hover:   #a2c7d7;
+  --brass-wash:    rgba(99, 168, 197, 0.05);  /* agent box fill */
+  --brass-wash-2:  rgba(99, 168, 197, 0.12);  /* output box fill */
+  --brass-glow:    rgba(99, 168, 197, 0.10);  /* hero radial */
   --sage:          #7fa898;  /* availability dot, only second hue on the page */
 
   /* Type */
