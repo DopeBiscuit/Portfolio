@@ -385,7 +385,5 @@ textarea.field-input {
   width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  object-position: center 12%;
-  filter: grayscale(0.8) contrast(1.08) brightness(0.92);
-  mix-blend-mode: luminosity;
+  object-position: center top;
 }
